@@ -13,17 +13,11 @@
     </div>
 {% endblock %}
 {% block body %}
-    <h1>Test</h1>
-    <img src="img/mentha.png">
+    <h1>Test {{ evaluation.id }}</h1>
+    {% for question in questions %}
     <ul>
-        {% for patient in patient %}
-            <li>Patient {{ patient.name }}: Teste: {{ patient.tests }}</li>
-        {% endfor %}
-        {% for test in test %}
-            <li>Test {{ test.id }}: Orientador: {{ test.advisor }}: Paciente: {{ test.patient }}: Perguntas: {{test.statement }}</li>
-        {% endfor %}
-        {% for report in report %}
-            <li>Report {{ report.id }}: Test: {{ report.test }} Relatório: {{ report.text }}</li>
-        {% endfor %}
+        <li>Question {{ question}}</li>
     </ul>
+    {% endfor %}
 {% endblock %}
+</html>

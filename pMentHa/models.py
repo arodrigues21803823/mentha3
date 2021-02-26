@@ -8,17 +8,18 @@ class Question(models.Model):
     result = models.CharField(max_length=64)
 
     def __str__(self):
-        return f"{self.id}: {self.classes} , {self.statement}"
+        return f"{self.id}:{self.statement}"
 
 
 class Test(models.Model):
     name = models.CharField(max_length=64)
     type = models.CharField(max_length=64)
     statement = models.TextField(max_length=1000)
-    questions = models.ManyToManyField('Question', blank=True, related_name="Questions")
+    questions = models.ManyToManyField('Question', blank=True, related_name="questions")
+    advisor = models.ForeignKey('Advisor', on_delete=models.SET_NULL, null=True, related_name="advisor")
 
     def __str__(self):
-        return f"O teste {self.id}"
+        return f"Teste {self.id}"
 
 
 class Answer(models.Model):
@@ -35,7 +36,6 @@ class Answer(models.Model):
 class Advisor(models.Model):
     name = models.CharField(max_length=64)
     email = models.CharField(max_length=254)
-    test = models.ManyToManyField('Test', blank=True, related_name="test")
 
     def __str__(self):
         return f"{self.name}"
@@ -47,7 +47,7 @@ class Patient(models.Model):
     tests = models.ManyToManyField('Test', blank=True, related_name="tests")
 
     def __str__(self):
-        return f"{self.name} está inscrito nos testes {self.tests}"
+        return f"{self.name}"
 
 
 class Report(models.Model):
@@ -57,4 +57,4 @@ class Report(models.Model):
     text = models.TextField(max_length=1000)
 
     def __str__(self):
-        return f"Relatório do teste {self.test}: {self.patient}, {self.text}"
+        return f"Relatório do teste {self.test}: {self.text}"
