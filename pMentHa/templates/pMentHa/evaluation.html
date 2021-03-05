@@ -7,17 +7,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
     <div class="topmenu">
         <a class="active" href="index.html">Home</a>
-        <a href="local.html">Localização</a>
-        <a href="multimedia.html">Multimédia</a>
-        <a href="info.html">Informação</a>
+        <a href="local.html">ProtocoloMentHa</a>
+        <a href="multimedia.html">MentHaCare</a>
+        <a href="info.html">MentHa COG</a>
+        <a href="info.html">About Us</a>
+        <a class="exit" href="info.html">Entrar</a>
     </div>
 {% endblock %}
 {% block body %}
     <h1>Test {{ evaluation.id }}</h1>
-    {% for question in questions %}
     <ul>
+    {% for question in questions %}
         <li>Question {{ question}}</li>
-    </ul>
     {% endfor %}
+    </ul>
 {% endblock %}
 </html>
