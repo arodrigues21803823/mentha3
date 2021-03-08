@@ -2,12 +2,12 @@
 {% load static %}
 {% block head %}
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="{% static 'pMentHa/overview.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'pMentHa/regPatient.css' %}">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
     <div class="topmenu">
         <a href="{% url 'index' %}">Home</a>
-        <a class="active" href="{% url 'overview' %}">ProtocoloMentHa</a>
+        <a class="active" href="{% url 'regPatient' %}">ProtocoloMentHa</a>
         <a href="multimedia.html">MentHaCare</a>
         <a href="info.html">MentHaCOG</a>
         <a href="info.html">About Us</a>
@@ -16,8 +16,8 @@
 {% block body %}
         <img class="img" src="{% static "pMentHa/images/mentha.png" %}" />
         <div class="mainmenu">
-            <a class= "unactive" href="{% url 'index' %}">Home</a>
-            <a class="active" href="{% url 'overview' %}">ProtocoloMentHa</a>
+            <a class= "unactive" href="{% url 'patientoverview' %}">Avaliações</a>
+            <a class="active" href="{% url 'regPatient' %}">Inscrição de Paciente</a>
         </div>
         <div class="container">
          <form action="">
@@ -62,7 +62,8 @@
                 </div>
             </div>
             <div class="rightpane">
-                <h1>Test Page</h1>
+
+
             </div>
          </form>
             </div>

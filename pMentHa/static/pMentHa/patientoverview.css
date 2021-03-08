@@ -85,15 +85,14 @@ h2{
     background-color: #7CDDEA;
     font-weight: bold;
     color: white;
-    text-align: right;
-    padding-left: 325px;
-    padding-right: 329px;
+    text-align: center;
+    width: 48%;
   }
 .mainmenu a.unactive {
-    display: block;
-    text-align-all: center;
-    padding-left: 325px;
-    padding-right: 325px;
+    text-align: center;
+    text-align: center;
+    width: 45%;
+
   }
 
 
@@ -106,6 +105,7 @@ h2{
     width: 25%;
     height: 100%;
     float: left;
+    padding-left: 40px;
 
 }
 
@@ -113,8 +113,8 @@ h2{
     width: 25%;
     height: 100%;
     float: left;
-    padding-left: 100px;
-    padding-top: 60px;
+    padding-left: 130px;
+    padding-top: 67px;
 }
 
 .rightpane {
@@ -204,4 +204,26 @@ input[type=submit]:hover {
     padding-top: 10px;
 
 }
+table{
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 30px;
+    font-family: Roboto;
+}
 
+td, th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+tr:nth-child(even){background-color: #f2f2f2;}
+
+tr:hover {background-color: #ddd;}
+
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: #4CAF50;
+  color: white;
+}

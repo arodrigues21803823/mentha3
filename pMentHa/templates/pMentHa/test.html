@@ -2,24 +2,22 @@
 {% load static %}
 {% block head %}
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="{% static 'pMentHa/index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'pMentHa/patientoverview.css' %}">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
     <div class="topmenu">
-        <a class="active" href="index.html">Home</a>
-        <a href="local.html">ProtocoloMentHa</a>
+        <a href="{% url 'index' %}">Home</a>
+        <a class="active" href="{% url 'regPatient' %}">ProtocoloMentHa</a>
         <a href="multimedia.html">MentHaCare</a>
-        <a href="info.html">MentHa COG</a>
+        <a href="info.html">MentHaCOG</a>
         <a href="info.html">About Us</a>
-        <a class="exit" href="info.html">Entrar</a>
     </div>
 {% endblock %}
 {% block body %}
-    <h1>Test {{ evaluation.id }}</h1>
-    <ul>
-    {% for question in questions %}
-        <li>Question {{ question}}</li>
+    <p>{{ evaluation }}</p>
+    {% for question in perguntas %}
+        {{ question }}
+        <br>
     {% endfor %}
-    </ul>
+
 {% endblock %}
-</html>

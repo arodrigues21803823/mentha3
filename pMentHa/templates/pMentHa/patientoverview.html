@@ -1,0 +1,51 @@
+{% extends "pMentHa/layout.html" %}
+{% load static %}
+{% block head %}
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'pMentHa/patientoverview.css' %}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <div class="topmenu">
+        <a href="{% url 'index' %}">Home</a>
+        <a class="active" href="{% url 'regPatient' %}">ProtocoloMentHa</a>
+        <a href="multimedia.html">MentHaCare</a>
+        <a href="info.html">MentHaCOG</a>
+        <a href="info.html">About Us</a>
+    </div>
+{% endblock %}
+{% block body %}
+        <img class="img" src="{% static "pMentHa/images/mentha.png" %}" />
+        <div class="mainmenu">
+            <a class= "active" href="{% url 'patientoverview' %}">Avaliações</a>
+            <a class="unactive" href="{% url 'regPatient' %}">Inscrição de Pacientes</a>
+        </div>
+
+            <table>
+                <tr><th>Paciente</th><th>Rastreio</th><th>Pré-Teste</th><th>Monit_I</th><th>Monit_II</th><th>Pós Teste</th>
+                    {% for patient in patients %}
+                        <tr>
+                        <td>{{ patient.name }}</td>
+                        {% for test in patient.tests.all%}
+                            <td>
+                            <a href="{% url 'test' test.id %}">
+                                {{ test }}
+                                </a>
+                            </td>
+                            {% if forloop.last == True %}
+                                {% if forloop.counter <= 5 %}
+                                    <td>
+                                        <a href="{% url 'test' forloop.counter %}">
+                                        Test {{ forloop.counter }}
+                                        </a>
+                                    </td>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                        </tr>
+                    {% endfor %}
+            </table>
+
+        <br>
+        <img class="promotores" src="{% static "pMentHa/images/promotores.png"%}"/>
+
+{% endblock %}

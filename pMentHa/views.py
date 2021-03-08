@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Test, Report, Patient
+from .models import Test, Report, Patient, Answer, Question
 
 
 # Create your views here.
@@ -8,18 +8,22 @@ def index(request):
     })
 
 
-def evaluation(request, test_id):
-    evaluation = Test.objects.get(pk=test_id)
-    return render(request, "pMentHa/evaluation.html", {
-        "evaluation": evaluation,
-        "questions": evaluation.questions.all()
+def patientoverview (request):
+    return render(request, "pMentHa/patientoverview.html", {
+        "patients": Patient.objects.all(),
+        "tests": Test.objects.all(),
+        "reports": Report.objects.all()
 
     })
 
+def regPatient(request):
+    return render(request, "pMentHa/regPatient.html", {
+    })
 
-def overview(request):
 
-    return render(request, "pMentHa/overview.html", {
-        "patients": Patient.objects.all()
-
+def test (request, test_id):
+    evaluation = Test.objects.get(pk=test_id)
+    return render(request, "pMentHa/test.html", {
+        "evaluation": evaluation,
+        "perguntas": evaluation.questions.all(),
     })

@@ -5,7 +5,7 @@ from django.db import models
 class Question(models.Model):
     classes = models.CharField(max_length=64)
     statement = models.TextField(max_length=258)
-    result = models.CharField(max_length=64)
+    quotation = models.CharField(max_length=64)
 
     def __str__(self):
         return f"{self.id}:{self.statement}"
@@ -26,11 +26,11 @@ class Answer(models.Model):
     text = models.TextField(max_length=258)
     scale = models.CharField(max_length=64)
     quotation = models.CharField(max_length=64)
-    question = models.ForeignKey('Question', on_delete=models.SET_NULL, null=True)
-    test = models.ForeignKey('Test', on_delete=models.SET_NULL, null=True)
+    question = models.ForeignKey('Answer', on_delete=models.SET_NULL, null=True, related_name="respostas")
+    #test = models.ForeignKey('Test', on_delete=models.SET_NULL, null=True, related_name="test")
 
     def __str__(self):
-        return f"{self.id}: {self.text} , {self.scale} , {self.quotation}, {self.test}, {self.question}"
+        return f"{self.text}"
 
 
 class Advisor(models.Model):
