@@ -19,32 +19,34 @@
             <a class= "active" href="{% url 'patientoverview' %}">Avaliações</a>
             <a class="unactive" href="{% url 'regPatient' %}">Inscrição de Pacientes</a>
         </div>
-
+        <form action="{% url 'regPatient' %}" method="post">
+            {% csrf_token %}
             <table>
                 <tr><th>Paciente</th><th>Rastreio</th><th>Pré-Teste</th><th>Monit_I</th><th>Monit_II</th><th>Pós Teste</th>
                     {% for patient in patients %}
                         <tr>
-                        <td>{{ patient.name }}</td>
-                        {% for test in patient.tests.all%}
-                            <td>
-                            <a href="{% url 'test' test.id %}">
-                                {{ test }}
-                                </a>
-                            </td>
-                            {% if forloop.last == True %}
-                                {% if forloop.counter <= 5 %}
+                            <td>{{ patient.name }}</td>
+                                {% for test in patient.tests.all%}
                                     <td>
-                                        <a href="{% url 'test' forloop.counter %}">
-                                        Test {{ forloop.counter }}
+                                        <a href="{% url 'test' test.id %}">
+                                        {{ test }}
                                         </a>
                                     </td>
-                                {% endif %}
-                            {% endif %}
-                        {% endfor %}
+                                    {% if forloop.last == True %}
+                                        {% if forloop.counter <= 5 %}
+                                            <td>
+                                                <a href="{% url 'test' count %}">
+                                                Fazer Teste {{ count }}
+                                                </a>
+                                            </td>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
                         </tr>
-                    {% endfor %}
+                     {% endfor %}
             </table>
-
+        </form>
         <br>
         <img class="promotores" src="{% static "pMentHa/images/promotores.png"%}"/>
 

@@ -19,35 +19,34 @@
             <a class= "unactive" href="{% url 'patientoverview' %}">Avaliações</a>
             <a class="active" href="{% url 'regPatient' %}">Inscrição de Paciente</a>
         </div>
-        <div class="container">
-         <form action="">
-            <div class="leftpane">
-
-                     <div class="square">
+         <form action="{% url 'regPatient' %}" method="post">
+            {% csrf_token %}
+            <div class="container">
+                <div class="leftpane">
+                <div class="square">
                          <p>Inserir Fotografia</p>
                      </div>
-                     <label class="left" for="fname">Primeiro Nome:</label>
+                     <label class="left" for="fname">Nome:</label>
                      <input type="text" id="fname" name="firstname">
 
-                     <label class="left" for="lname">Apelido:</label>
-                     <input type="text" id="lname" name="lastname">
+                     <label class="left" for="email">Email:</label>
+                     <input type="text" id="email" name="email">
 
-                     <label class="left" for="genero">Género</label>
-                     <select id="genero" name="genero">
+                     <label class="left" for="gender">Género</label>
+                     <select id="gender" name="gender">
                          <option value="masculino">Masculino</option>
                          <option value="feminino">Feminino</option>
                          <option value="outro">Outro</option>
                      </select>
 
-                     <label class="left" for="genero">Nacionalidade</label>
-                     <select id="genero" name="genero">
-                         <option value="masculino">Masculino</option>
-                         <option value="feminino">Feminino</option>
+                     <label class="left" for="nacionality">Nacionalidade</label>
+                     <select id="nacionality" name="nacionality">
+                         <option value="portugal">Portugal</option>
+                         <option value="espanha">Espanha</option>
                          <option value="outro">Outro</option>
                      </select>
-            </div>
-            <div class="middlepane">
-                <div class="middle">
+                </div>
+                <div class="middlepane">
                     <label class="left" for="date">Data de Nascimento:</label>
                     <input type="date" id="date" name="date">
 
@@ -58,16 +57,13 @@
                     <input type="text" id="disexase2" name="disease2">
 
                     <label class="left" for="number">Contacto</label>
-                    <input type="number" id="number" name="number" min="9" max="9">
+                    <input type="number" id="number" name="number">
+                </div>
+                <div class="rightpane">
+                    <input class="button" type="submit" value="Register">
                 </div>
             </div>
-            <div class="rightpane">
-
-
-            </div>
          </form>
-            </div>
-        <br>
         <img class="promotores" src="{% static "pMentHa/images/promotores.png"%}"/>
 
 {% endblock %}
