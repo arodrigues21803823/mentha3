@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Advisor, Patient, Report, Test, Question, Answer
+from .models import *
 
 # Register your models here.
 admin.site.register(Advisor)
@@ -8,4 +8,5 @@ admin.site.register(Report)
 admin.site.register(Test)
 admin.site.register(Question)
 admin.site.register(Answer)
+admin.site.register(Resolution)
 

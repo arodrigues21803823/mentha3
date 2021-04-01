@@ -1,0 +1,23 @@
+<!--
+template para renderizar pergunta de desenvolvimento
+-->
+
+{% extends "pMentHa/layout.html" %}
+
+{% block body %}
+   <form action="{% url 'fazPergunta' questionID resolutionID %}" method="POST">
+   {% csrf_token %}
+
+        <!--  Sugiro enviar no formulario escondido os dados em baixo
+        para que quando se receba o formulario se saiba onde encaixar.
+        Deve avaliar-se questões de segurança quanto a isto.
+        Se alguem forjar um html com valores diferentes, pode alterar respostas de outro paciente?
+
+        #  textoPergunta }}
+        -->
+
+        {% include fileName %}
+        <input type="submit" name="Submeter">
+    </form>
+
+{% endblock %}

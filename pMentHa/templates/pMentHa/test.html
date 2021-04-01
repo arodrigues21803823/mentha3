@@ -14,10 +14,18 @@
     </div>
 {% endblock %}
 {% block body %}
-    <p>{{ evaluation }}</p>
-    {% for question in questions %}
-        {{ question }}
-        <br>
-    {% endfor %}
-
+     <img class="img" src="{% static "pMentHa/images/mentha.png" %}" />
+    <hr>
+    <h1>{{ evaluation }}</h1>
+    <form action="{% url 'patientoverview' %}" method="post">
+        {% csrf_token %}
+        {% for question in questions %}
+            <label class="left" for="awnser">{{ question }}</label>
+            <input type="text" id="awnser" name="awnser">
+            <input type="hidden" name="question_id" value="{{ question.id }}">
+            <br>
+            <input class="button" type="submit" value="Submeter teste">
+            <break>
+        {% endfor %}
+    </form>
 {% endblock %}

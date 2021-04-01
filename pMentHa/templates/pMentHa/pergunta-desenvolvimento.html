@@ -1,0 +1,14 @@
+<!--
+template para renderizar pergunta de desenvolvimento
+-->
+
+{% extends "pMentHa/layout.html" %}
+
+{% block body %}
+<form action="fazPerguntaDesenvolvimento:{{perguntaId}}" method="POST">
+
+    {{ textoPergunta }}
+
+</form>
+
+{% endblock %}
