@@ -16,8 +16,8 @@
 {% block body %}
         <img class="img" src="{% static "pMentHa/images/mentha.png" %}" />
         <div class="mainmenu">
-            <a class= "unactive" href="{% url 'patientoverview' %}">Avaliações</a>
             <a class="active" href="{% url 'regPatient' %}">Inscrição de Paciente</a>
+            <a class= "unactive" href="{% url 'patientoverview' %}">Avaliações</a>
         </div>
          <form action="{% url 'regPatient' %}" method="post">
             {% csrf_token %}
@@ -60,7 +60,9 @@
                     <input type="number" id="number" name="number">
                 </div>
                 <div class="rightpane">
+                    <a href="patientoverview-novo.html">
                     <input class="button" type="submit" value="Register">
+                    </a>
                 </div>
             </div>
          </form>

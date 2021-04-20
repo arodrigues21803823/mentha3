@@ -1,23 +1,19 @@
 <!--
 template para renderizar pergunta de desenvolvimento
 -->
-
 {% extends "pMentHa/layout.html" %}
-
+{% load static %}
+{% block head %}
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'pMentHa/patientoverview.css' %}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+{% endblock %}
 {% block body %}
-   <form action="{% url 'fazPergunta' questionID resolutionID %}" method="POST">
-   {% csrf_token %}
-
-        <!--  Sugiro enviar no formulario escondido os dados em baixo
-        para que quando se receba o formulario se saiba onde encaixar.
-        Deve avaliar-se questões de segurança quanto a isto.
-        Se alguem forjar um html com valores diferentes, pode alterar respostas de outro paciente?
-
-        #  textoPergunta }}
-        -->
-
+    <img class="img" src="{% static "pMentHa/images/mentha.png" %}" />
+    <form action="{% url 'fazPergunta' questionID resolutionID %}" method="POST">
+    {% csrf_token %}
         {% include fileName %}
         <input type="submit" name="Submeter">
     </form>
-
 {% endblock %}

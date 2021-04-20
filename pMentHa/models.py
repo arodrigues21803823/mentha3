@@ -81,26 +81,26 @@ def criaTabelaTestes():
     testes = []
     for patient in Patient.objects.all():
 
-        dicPaciente = {}
+        dicPatient = {}
 
-        dicPaciente["nome"] = patient.name
-        dicPaciente["id"] = patient.id
+        dicPatient["name"] = patient.name
+        dicPatient["id"] = patient.id
 
-        testesFeitos = []
+        doneResolutions = []
         for test in patient.tests.all():
-            testesFeitos.append(test.id)
-        dicPaciente["testesFeitos"] = testesFeitos
+            doneResolutions.append(test.id)
+        dicPatient["doneResolutions"] = doneResolutions
 
-        if len(testesFeitos) < 5:
-            dicPaciente["proximoTesteAFazer"] = [len(testesFeitos) + 1]
+        if len(doneResolutions) < 5:
+            dicPatient["nextTest"] = [len(doneResolutions) + 1]
 
-        testesPorFazer = []
-        if len(testesFeitos) < 5:
-            for i in range(len(testesFeitos)+2, 5+1):
-                testesPorFazer.append(i)
-        dicPaciente["testesPorFazer"] = testesPorFazer
+        toDoTests = []
+        if len(doneResolutions) < 5:
+            for i in range(len(doneResolutions)+2, 5+1):
+                toDoTests.append(i)
+        dicPatient["toDoTests"] = toDoTests
 
-        testes.append(dicPaciente)
+        testes.append(dicPatient)
 
     return testes
 
@@ -166,9 +166,11 @@ def proximaPergunta(testID, questionID):
     # esta função deve identificar qual o id a proxima pergunta
 
     # isto pode estar num ficheiro
-    sequenciaDeQuestionIDPorTeste = {
-        1:[1,2],
-    }
+    sequenciaDeQuestionIDPorTeste = {}
+    test = Test.objects.get(pk=testID)
+    sequenciaDeQuestionIDPorTeste[testID] = []
+    for question in test.questions.all():
+        sequenciaDeQuestionIDPorTeste[testID].append(question.id)
 
     if questionID == 0:
         return sequenciaDeQuestionIDPorTeste[testID][0]
@@ -180,3 +182,11 @@ def proximaPergunta(testID, questionID):
             return -1
         else:
             return sequenciaDeQuestionIDPorTeste[testID][i+1]
+
+
+def addTest(testID, patientID):
+    patient=Patient.objects.get(pk=patientID)
+    test=Test.objects.get(pk=testID)
+    newPatient = patient.tests.add(test)
+
+    return  newPatient

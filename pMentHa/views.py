@@ -59,24 +59,12 @@ def regPatient(request):
 def fazPergunta(request, resolutionID, questionID):
 
     if request.method == "POST":
-
-        # as perguntas de desenvolvimento devolvem texto
-        # e as de escolha multipla apenas o value associado ao input.
-        # sugiro os input ter name="resposta" no HTML
-        # e ser guardadas no campo text da answer
-        # .
-        # a avaliação pode ser feita posteriormente, umas automaticamente,
-        # outras caso necessário o avaliador tem q ler e dar cotação
-        # ou seja, o avaliador deverá poder percorrer novamente o teste
-        # mas nessa altura para avaliar a pergunta.
-        # discuto na constroiTextoPergunta() uma proposta para isto.
         text = request.POST["resposta"]
         quotation = 0 # request.POST["quotation"]
 
         # e se já existir uma resposta para essa (question,resolution,patient) e se resubmeter?
         # cria-se novo objeto ou altera-se? verificamos primeiro se existe? verificar o q acontece...
         # podiamos ter algo do genero:
-
         # avaliar se usar filter ou get. verificar que, se não existe, retorna None. é isso que nos interessa.
         answer = Answer.objects.filter(question=questionID, resolution=resolutionID)
         if answer is not None:
@@ -126,3 +114,6 @@ def fazPrimeiraPergunta(request, testID, patientID):
             "questionID": question.id,
             "resolutionID": resolution.id # permite identificar patient e test
         })
+
+def report(request, resolutionID):
+    return render(request, "pMentHa/createReport.html")

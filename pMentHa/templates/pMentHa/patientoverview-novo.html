@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
     <div class="topmenu">
         <a href="{% url 'index' %}">Home</a>
-        <a class="active" href="{% url 'regPatient' %}">ProtocoloMentHa</a>
+        <a class="active" href="{% url 'patientoverview' %}">ProtocoloMentHa</a>
         <a href="multimedia.html">MentHaCare</a>
         <a href="info.html">MentHaCOG</a>
         <a href="info.html">About Us</a>
@@ -16,8 +16,8 @@
 {% block body %}
         <img class="img" src="{% static "pMentHa/images/mentha.png" %}" />
         <div class="mainmenu">
-            <a class= "active" href="{% url 'patientoverview' %}">Avaliações</a>
             <a class="unactive" href="{% url 'regPatient' %}">Inscrição de Pacientes</a>
+            <a class= "active" href="{% url 'patientoverview' %}">Avaliações</a>
         </div>
 
         <table>
@@ -29,29 +29,29 @@
                 <th>Monit_II</th>
                 <th>Pós Teste</th>
             </tr>
-            {% for patiente in testes %}
+            {% for patient in testes %}
             <tr>
-                <td>{{ patiente.nome }}</td>
+                <td>{{ patient.name }}</td>
 
-                {% for teste in patiente.testesFeitos%}
+                {% for test in patient.doneResolutions%}
                 <td>
-                    <a href="">
-                    <p style="color: #4EB4BE"> Teste {{ teste }}</p>
+                    <a href="{% url 'report' test %}">
+                    <p style="color: #4EB4BE">Relatório</p>
                     </a>
                 </td>
                 {% endfor %}
 
-                {% for teste in patiente.proximoTesteAFazer%}
+                {% for test in patient.nextTest%}
                 <td>
-                    <a href="{% url 'fazPrimeiraPergunta' teste patiente.id %}">
-                    <p style="color: green"> Teste {{ teste }} (por fazer)</p>
+                    <a href="{% url 'fazPrimeiraPergunta' test patient.id %}">
+                    <p style="color: green"> Iniciar Teste {{ test }}</p>
                     </a>
                 </td>
                 {% endfor %}
 
-                {% for teste in patiente.testesPorFazer%}
+                {% for test in patient.toDoTests%}
                 <td>
-                    <p style="color: grey">Teste {{ teste }}</p>
+                    <p style="color: grey">Teste {{ test }}</p>
                 </td>
                 {% endfor %}
             </tr>

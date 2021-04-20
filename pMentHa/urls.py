@@ -5,9 +5,10 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("patientoverview", views.patientoverview, name="patientoverview"),
     path("regPatient", views.regPatient, name="regPatient"),
-    path("<int:testID>", views.test, name="test"),
-    path("<int:testID>-<int:patientID>", views.fazPrimeiraPergunta, name="fazPrimeiraPergunta"),
-    path("asdl<int:testID>-<int:patientID>", views.fazPergunta, name="fazPergunta"),
+    path("test<int:resolutionID>", views.test, name="test"),
+    path("teste/pergunta1/<int:testID>-<int:patientID>", views.fazPrimeiraPergunta, name="fazPrimeiraPergunta"),
+    path("teste/pergunta<int:questionID>-<int:resolutionID>", views.fazPergunta, name="fazPergunta"),
+    path("report<int:resolutionID>", views.report, name="report")
 
 
 ]
