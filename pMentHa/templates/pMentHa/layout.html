@@ -2,14 +2,22 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-    {% load static %}
-    <link rel="shortcut icon" type="image/x-icon" href="{% static 'pMentHa/images/favicon.ico' %}"/>
-    <title>MentHa</title>
+        {% load static %}
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'pMentHa/images/favicon.ico' %}"/>
+        <title>MentHa</title>
         {% block head %}
         {% endblock %}
     </head>
-    <body>
-        {% block body %}
-        {% endblock %}
-    </body>
+    <header>
+        <div class="topmenu">
+            <a class="active" href="{% url 'index' %}">Home</a>
+            <a href="{% url 'patientoverview' %}">ProtocoloMentHa</a>
+            <a href="multimedia.html">MentHaCare</a>
+            <a href="info.html">MentHaCOG</a>
+            <a href="info.html">About Us</a>
+        </div>
+        <img class="img" src="{% static "pMentHa/images/mentha.png" %}" />
+    </header>
+{% block body %}
+{% endblock %}
 </html>

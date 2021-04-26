@@ -5,16 +5,8 @@
     <link rel="stylesheet" type="text/css" href="{% static 'pMentHa/index.css' %}">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
-    <div class="topmenu">
-        <a class="active" href="{% url 'index' %}">Home</a>
-        <a href="{% url 'patientoverview' %}">ProtocoloMentHa</a>
-        <a href="multimedia.html">MentHaCare</a>
-        <a href="info.html">MentHaCOG</a>
-        <a href="info.html">About Us</a>
-    </div>
 {% endblock %}
 {% block body %}
-        <img class="img" src="{% static "pMentHa/images/mentha.png" %}" />
         <hr class="line">
         <div class="vl"></div>
         <img class="velhinhos" src="{% static "pMentHa/images/velhinhos.png" %}"/>
@@ -22,9 +14,9 @@
         <h2>Projeto MentHa</h2>
         <br>
         <div class="explain">
-        <p>O Projecto MentHA - “Mental Health and Aging”, é um empreendimento colaborativo de investigadores e instituições público-privadas, sem fins lucrativos, que pretende avaliar os efeitos da reabilitação neuropsicológica em pessoas mais velhas com defeito cognitivo ou de-mência leve, com e sem patologia mental prévia (diagnosticada). </p>
-        <p>Protocolo de Avaliação MentHA, é um instrumento composto por várias provas neuropsicoló-gicas cuja selecção tem como objectivo proporcionar uma avaliação global do funcionamento (i) neurocognitivo (atenção complexa, função executiva, aprendizagem e memória linguagem per-ceptivomotor e a cognição social), (i) emocional (ansiedade, depressão), (iii) funcional (activida-des básicas e instrumentais de vida diária) e (iv) comportamental (sintomatologia psicopatoló-gica).</p>
-        <p>Os testes selecionados para este trabalho são frequentemente utilizados na prática clínica internacional e nacional com reconhecida qualidade técnica na identificação das funções cogni-tivas e validados para a população portuguesa. Adicionalmente, a escolha dos instrumentos recaiu também no facto de serem medidas de avaliação de aplicação breve.</p>
+        <p> O Projecto MentHA - “Mental Health and Aging”, é um empreendimento colaborativo de investigadores e instituições público-privadas, sem fins lucrativos, que pretende avaliar os efeitos da reabilitação neuropsicológica em pessoas mais velhas com defeito cognitivo ou de-mência leve, com e sem patologia mental prévia (diagnosticada). </p>
+        <p>Protocolo de Avaliação MentHA, é um instrumento composto por várias provas neuropsicoló-gicas cuja selecção tem como objectivo proporcionar uma avaliação global do funcionamento (i) neurocognitivo (atenção complexa, função executiva, aprendizagem e memória linguagem per-ceptivomotor e a cognição social), (i) emocional (ansiedade, depressão), (iii) funcional (activida-des básicas e instrumentais de vida diária) e (iv) comportamental (sintomatologia psicopatoló-gica). </p>
+        <p>Os testes selecionados para este trabalho são frequentemente utilizados na prática clínica internacional e nacional com reconhecida qualidade técnica na identificação das funções cogni-tivas e validados para a população portuguesa. Adicionalmente, a escolha dos instrumentos recaiu também no facto de serem medidas de avaliação de aplicação breve. </p>
         </div>
         <br>
         <img class="promotores" src="{% static "pMentHa/images/promotores.png"%}"/>

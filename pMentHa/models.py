@@ -5,11 +5,11 @@ from django import forms
 # Create your models here.
 class Question(models.Model):
     type = models.CharField(max_length=64)
+    name = models.CharField(max_length=64)
     htmlFileName = models.TextField(max_length=1000)
-    quotation = models.CharField(max_length=64)
 
     def __str__(self):
-        return f"{self.id}:{self.htmlFileName}"
+        return f"{self.id}:{self.name}"
 
 
 class Test(models.Model):
@@ -18,6 +18,7 @@ class Test(models.Model):
     statement = models.TextField(max_length=1000)
     questions = models.ManyToManyField('Question', blank=True, related_name="questions")
     advisor = models.ForeignKey('Advisor', on_delete=models.SET_NULL, null=True, related_name="advisor")
+    
 
     def __str__(self):
         return f"Teste {self.id}"

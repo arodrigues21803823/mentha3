@@ -5,16 +5,9 @@
     <link rel="stylesheet" type="text/css" href="{% static 'pMentHa/patientoverview.css' %}">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
-    <div class="topmenu">
-        <a href="{% url 'index' %}">Home</a>
-        <a class="active" href="{% url 'patientoverview' %}">ProtocoloMentHa</a>
-        <a href="multimedia.html">MentHaCare</a>
-        <a href="info.html">MentHaCOG</a>
-        <a href="info.html">About Us</a>
-    </div>
 {% endblock %}
 {% block body %}
-        <img class="img" src="{% static "pMentHa/images/mentha.png" %}" />
+
         <div class="mainmenu">
             <a class="unactive" href="{% url 'regPatient' %}">Inscrição de Pacientes</a>
             <a class= "active" href="{% url 'patientoverview' %}">Avaliações</a>
