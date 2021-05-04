@@ -18,7 +18,6 @@ class Test(models.Model):
     statement = models.TextField(max_length=1000)
     questions = models.ManyToManyField('Question', blank=True, related_name="questions")
     advisor = models.ForeignKey('Advisor', on_delete=models.SET_NULL, null=True, related_name="advisor")
-    
 
     def __str__(self):
         return f"Teste {self.id}"
@@ -162,19 +161,12 @@ def constroiTextoPergunta(resolutionID, question):
         return HTMLDaPergunta
 
 def proximaPergunta(testID, questionID):
-    # deve existir uma lista dos ids das perguntas de cada teste
-    # com base na ultima pergunta feita e no teste,
-    # esta função deve identificar qual o id a proxima pergunta
 
-    # isto pode estar num ficheiro
     sequenciaDeQuestionIDPorTeste = {}
     test = Test.objects.get(pk=testID)
     sequenciaDeQuestionIDPorTeste[testID] = []
     for question in test.questions.all():
         sequenciaDeQuestionIDPorTeste[testID].append(question.id)
-
-    if questionID == 0:
-        return sequenciaDeQuestionIDPorTeste[testID][0]
 
     else:
         i = sequenciaDeQuestionIDPorTeste[testID].index(questionID)

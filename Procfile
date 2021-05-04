@@ -1,0 +1,1 @@
+web: gunicorn mentHa1.wsgi --log-file -
