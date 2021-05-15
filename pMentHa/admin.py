@@ -9,4 +9,6 @@ admin.site.register(Test)
 admin.site.register(Question)
 admin.site.register(Answer)
 admin.site.register(Resolution)
+admin.site.register(Option)
+admin.site.register(QuestionOrder)
 

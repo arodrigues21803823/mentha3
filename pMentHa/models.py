@@ -4,12 +4,32 @@ from django import forms
 
 # Create your models here.
 class Question(models.Model):
-    type = models.CharField(max_length=64)
-    name = models.CharField(max_length=64)
-    htmlFileName = models.TextField(max_length=1000)
+    multipla = models.BooleanField(default=False)
+    category = models.TextField(max_length=1000)
+    text = models.TextField(max_length=1000)
+    explain = models.TextField(max_length=1000, blank=True)
+    stimulus = models.IntegerField()
 
     def __str__(self):
-        return f"{self.id}:{self.name}"
+        return f"{self.text}"
+
+
+class Option(models.Model):
+    question = models.ForeignKey('Question', on_delete=models.SET_NULL, null=True)
+    option = models.TextField(max_length=1000)
+    order = models.IntegerField()
+
+    def __str__(self):
+        return f"Question:{self.question.text}, option:{self.option}, order:{self.order}"
+
+
+class QuestionOrder(models.Model):
+    question = models.ForeignKey('Question', on_delete=models.SET_NULL, null=True)
+    order = models.IntegerField()
+    test = models.ForeignKey('Test', on_delete=models.SET_NULL, null=True)
+
+    def __str__(self):
+        return f"Test:{self.test.name}, question:{self.question.text}, order:{self.order}"
 
 
 class Test(models.Model):
@@ -20,7 +40,7 @@ class Test(models.Model):
     advisor = models.ForeignKey('Advisor', on_delete=models.SET_NULL, null=True, related_name="advisor")
 
     def __str__(self):
-        return f"Teste {self.id}"
+        return f"Teste {self.name}"
 
 
 class Answer(models.Model):
@@ -64,9 +84,6 @@ class Resolution(models.Model):
     def __str__(self):
         return f"{self.id}"
 
-    def returnResolution(self):
-        pass
-
 
 class Report(models.Model):
     resolution = models.ForeignKey('Resolution', on_delete=models.SET_NULL, null=True)
@@ -96,7 +113,7 @@ def criaTabelaTestes():
 
         toDoTests = []
         if len(doneResolutions) < 5:
-            for i in range(len(doneResolutions)+2, 5+1):
+            for i in range(len(doneResolutions) + 2, 5 + 1):
                 toDoTests.append(i)
         dicPatient["toDoTests"] = toDoTests
 
@@ -105,81 +122,34 @@ def criaTabelaTestes():
     return testes
 
 
-def constroiTextoPergunta(resolutionID, question):
-    #import os
-
-    #caminhoPastaPerguntas = os.getcwd() + "pMentHa\\templates\\pMentHa\\perguntas\\"
-
-    #if not os.path.isdir(caminhoPastaPerguntas):
-     #   print("\n\nErro de acesso a pasta de perguntas")
-
-    #os.path.join(caminho, nomeFicheiro)
-
-    caminho = "pMentHa\\templates\\pMentHa\\perguntas\\"
-    with open(caminho + question.htmlFileName,  encoding='utf-8') as ficheiro:
-        HTMLDaPergunta = ficheiro.read()
-
-        # se uma pergunta já foi respondida e for necessário ve-la novamente
-        # (por exemplo, se voltar para tras? ou se o avaliador quiser revisitar o teste)
-        # nesse caso já existe answer para o tuplo (question,resolution,pacient).
-        # pode-se assim verificar, antes de retornar HTMLDaPergunta, se existe resposta
-        # tal como proposto em baixo:
-
-        answer = Answer.objects.filter(question=question.id, resolution=resolutionID)
-        if answer != None:
-            pass
-            # caso exista, deve-se inserir em HTMLDaPergunta a resposta
-            # Como as perguntas são de dois tipos:
-
-            #  - nas de desenvolvimento basta inserir um atributo value com valor a resposta.
-            #  como? substituindo 'name="resposta"' por 'name="resposta" value="resposta armazenada"'
-            #  fica:
-            # <input type="text" name="resposta" value="resposta já feita em texto">.
-            # proposta de codigo:
-            if question.type == "desenvolvimento":
-                valueWithAnswer = f'name="resposta" value="{answer.text}"'
-                HTMLDaPergunta.replace('name="resposta"', valueWithAnswer)
-
-            #  - nas de opção multipla type="radio",
-            #  pode-se inserir o atributo checked na resposta selecionada,
-            #  ficando esse bolinha selecionada quando o utilizador a ativa
-            #  como answer.text tem o value do input, por exemplo numa pergunta com 3 opções:
-            #  <input type="radio" name="resposta" value="1">
-            #  <input type="radio" name="resposta" value="2">
-            #  <input type="radio" name="resposta" value="3">
-            # se answer.text="2", quer dizer q devemos por a de value="2" com checked.
-            #  basta procurar no HTML por value="2" e adicionar o checked, ficando do tipo:
-            #  <input type="radio" name="resposta" value="1">
-            #  <input type="radio" name="resposta" value="2" checked>
-            #  <input type="radio" name="resposta" value="3">
-
-            # proposta de codigo:
-            if question.type == "multipla":
-                selectedInput = f'value="{answer.text}"'
-                HTMLDaPergunta.replace(selectedInput, selectedInput + " checked")
-
-        return HTMLDaPergunta
-
 def proximaPergunta(testID, questionID):
-
     sequenciaDeQuestionIDPorTeste = {}
     test = Test.objects.get(pk=testID)
     sequenciaDeQuestionIDPorTeste[testID] = []
     for question in test.questions.all():
         sequenciaDeQuestionIDPorTeste[testID].append(question.id)
-
     else:
         i = sequenciaDeQuestionIDPorTeste[testID].index(questionID)
-        if i == len(sequenciaDeQuestionIDPorTeste[testID]) -1:
+        if i == len(sequenciaDeQuestionIDPorTeste[testID]) - 1:
             # foi a ultima pergunta do teste
             return -1
         else:
-            return sequenciaDeQuestionIDPorTeste[testID][i+1]
+            return sequenciaDeQuestionIDPorTeste[testID][i + 1]
 
 
 def addTest(testID, patientID):
-    patient=Patient.objects.get(pk=patientID)
-    test=Test.objects.get(pk=testID)
+    patient = Patient.objects.get(pk=patientID)
+    test = Test.objects.get(pk=testID)
     newPatient = patient.tests.add(test)
 
-    return  newPatient
+    return newPatient
+
+
+def questionsAwnsers(resolutionID):
+    list = {}
+    questionCount = 0
+    anwsers = Answer.objects.filter(resolution=resolutionID)
+    for i in anwsers:
+        list[questionCount] = Answer.objects.get(resolution=resolutionID, question = questionCount+1)
+        questionCount += 1
+    print(list)

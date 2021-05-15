@@ -1,0 +1,49 @@
+{% extends "pMentHa/layout.html" %}
+{% load static %}
+{% block body %}
+    <header>
+        <div class="topmenu">
+            <a  href="{% url 'index' %}"><i class="fa fa-fw fa-home"></i> Home</a>
+            <div class="dropdown">
+                <button class="dropbtn"><i class="fas fa-head-side-virus"></i> Projeto MentHa</button>
+                <div class="dropdown-content">
+                     {% if user.is_authenticated %}
+                        <a href="{% url 'patientoverview' %}">ProtocoloMentHa</a>
+                    {% else %}
+                        <a href="{% url 'login_' %}">ProtocoloMentHa</a>
+                    {% endif %}
+                    <a class="active" href="{% url 'mentha-care' %}"> MentHaCare</a>
+                    <a href="">MentHaCOG</a>
+                </div>
+            </div>
+            <a href=""><i class="fa fa-fw fa-envelope"></i> Contactos</a>
+            <div class="top-right">
+                {% if user.is_authenticated %}
+                    <div class="dropdown">
+                        <button class="dropbtn">Bem vindo {{ user.username }}!</button>
+                        <div class="dropdown-content2">
+                            <a href="{% url 'logout_' %}"><i class="fas fa-sign-out-alt"></i>Logout</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <a href="{% url 'login_' %}"><i class="fas fa-fingerprint"></i> Login</a>
+                {% endif %}
+            </div>
+        </div>
+
+        <img class="img" src="{% static "pMentHa/images/mentha.png" %}" alt="velhotes"/>
+    </header>
+    <hr class="line">
+    <main class="division">
+        <h2>MentHA-CARE</h2>
+        <p>O programa
+            MentHA-CARE concretiza uma intervenção psicoeducativa junto de
+            cuidadores informais de pessoas com doença mental.
+            Pretende-se promover o conhecimento acerca de algumas doenças mentais/crónicas
+            (ex. demência, perturbação bipolar, esquizofrenia, incapacidade intelectual,
+            epilepsia); explorar estratégias de comunicação e de gestão de comportamentos
+            desafiantes; promover boas práticas na prestação dos cuidados; conhecer os recursos
+            de apoio legais e da comunidade; explorar estratégias de gestão emocional e
+            de coping; incentivar o autocuidado dos CI e a valorização do papel de cuidador.</p>
+    </main>
+{% endblock %}

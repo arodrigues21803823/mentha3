@@ -1,0 +1,16 @@
+<!-- snippet, pedaço de codigo para inserir no template -->
+{% extends "pMentHa/layout.html" %}
+{% load static %}
+{% block body %}
+    <h1>{{ question.category }}</h1>
+    <form action="{% url 'fazPergunta' resolutionID question.id %}" method="POST">
+        {% csrf_token %}
+        <p>{{ question.text }}</p>
+        {% for option in options %}
+            <label><input type="radio" name="resposta" value="{{ option }}">: {{ option.option }}</label>
+        {% endfor %}
+        <br>
+        <input class="testButton" type="submit" value="Próxima Pergunta">
+        <p>{{question.explain}}</p>
+    </form>
+{% endblock %}

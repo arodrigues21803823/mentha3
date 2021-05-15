@@ -1,0 +1,9 @@
+{% extends "pMentHa/layout.html" %}
+{% load static %}
+{% block body %}
+    <h1>{{ question.category }}</h1>
+    <p>{{ question.text }}</p>
+    <label class="left" for="fname">Nome:</label>
+    <input class="pat" type="text" id="fname" name="firstname">
+    <p>{{question.explain}}</p>
+{% endblock %}

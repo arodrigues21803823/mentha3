@@ -1,63 +1,86 @@
 {% extends "pMentHa/layout.html" %}
 {% load static %}
-{% block head %}
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="{% static 'pMentHa/regPatient.css' %}">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
-{% endblock %}
 {% block body %}
+    <header>
+        <div class="topmenu">
+            <a  href="{% url 'index' %}"><i class="fa fa-fw fa-home"></i> Home</a>
+            <div class="dropdown">
+                <button class="dropbtn"><i class="fas fa-head-side-virus"></i> Projeto MentHa</button>
+                <div class="dropdown-content">
+                    <a class="active" href="{% url 'patientoverview' %}">ProtocoloMentHa</a>
+                    <a href="{% url 'mentha-care' %}"> MentHaCare</a>
+                    <a href="">MentHaCOG</a>
+                </div>
+            </div>
+            <a href=""><i class="fa fa-fw fa-envelope"></i> Contactos</a>
+            <div class="top-right">
+                {% if user.is_authenticated %}
+                    <div class="dropdown">
+                        <button class="dropbtn">Bem vindo {{ user.username }}!</button>
+                        <div class="dropdown-content2">
+                            <a href="{% url 'logout_' %}"><i class="fas fa-sign-out-alt"></i>Logout</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <a href="{% url 'login_' %}"><i class="fas fa-fingerprint"></i> Login</a>
+                {% endif %}
+            </div>
+        </div>
+        <img class="img" src="{% static "pMentHa/images/mentha.png" %}" alt="velhotes"/>
+    </header>
+    <hr class="line">
+    <main>
         <div class="mainmenu">
             <a class="active" href="{% url 'regPatient' %}">Inscrição de Paciente</a>
-            <a class= "unactive" href="{% url 'patientoverview' %}">Avaliações</a>
+            <a class="unactive" href="{% url 'patientoverview' %}">Avaliações</a>
         </div>
-         <form action="{% url 'regPatient' %}" method="post">
+        <form action="{% url 'regPatient' %}" method="post">
             {% csrf_token %}
             <div class="container">
-                <div class="leftpane">
-                <div class="square">
-                         <p>Inserir Fotografia</p>
-                     </div>
-                     <label class="left" for="fname">Nome:</label>
-                     <input type="text" id="fname" name="firstname">
+                <div class="col-left">
+                    <div class="square">
+                        <p>Inserir Fotografia</p>
+                    </div>
+                    <label class="left" for="fname">Nome:</label>
+                    <input class="pat" type="text" id="fname" name="firstname">
 
-                     <label class="left" for="email">Email:</label>
-                     <input type="text" id="email" name="email">
+                    <label class="left" for="email">Email:</label>
+                    <input class="pat" type="text" id="email" name="email">
 
-                     <label class="left" for="gender">Género</label>
-                     <select id="gender" name="gender">
-                         <option value="masculino">Masculino</option>
-                         <option value="feminino">Feminino</option>
-                         <option value="outro">Outro</option>
-                     </select>
+                    <label class="left" for="gender">Género</label>
+                    <select id="gender" name="gender">
+                        <option value="masculino">Masculino</option>
+                        <option value="feminino">Feminino</option>
+                        <option value="outro">Outro</option>
+                    </select>
 
-                     <label class="left" for="nacionality">Nacionalidade</label>
-                     <select id="nacionality" name="nacionality">
-                         <option value="portugal">Portugal</option>
-                         <option value="espanha">Espanha</option>
-                         <option value="outro">Outro</option>
-                     </select>
+                    <label class="left" for="nacionality">Nacionalidade</label>
+                    <select id="nacionality" name="nacionality">
+                        <option value="portugal">Portugal</option>
+                        <option value="espanha">Espanha</option>
+                        <option value="outro">Outro</option>
+                    </select>
                 </div>
-                <div class="middlepane">
+                <div class="col-middle">
                     <label class="left" for="date">Data de Nascimento:</label>
                     <input type="date" id="date" name="date">
 
                     <label class="left" for="disease">Doença degenerativa identificada?</label>
-                    <input type="text" id="disease" name="disease">
+                    <input class="pat" type="text" id="disease" name="disease">
 
                     <label class="left" for="disease2">Se sim, qual ou quais?</label>
-                    <input type="text" id="disease2" name="disease2">
+                    <input class="pat" type="text" id="disexase2" name="disease2">
 
                     <label class="left" for="number">Contacto</label>
                     <input type="number" id="number" name="number">
                 </div>
-                <div class="rightpane">
-                    <a href="patientoverview-novo.html">
-                    <input class="button" type="submit" value="Register">
+                <div class="col-right">
+                    <a href="{% url 'patientoverview' %}">
+                        <input class="button" type="submit" value="Registar">
                     </a>
                 </div>
             </div>
-         </form>
-        <img class="promotores" src="{% static "pMentHa/images/promotores.png"%}"/>
-
+        </form>
+    </main>
+    <img class="promotores" src="{% static "pMentHa/images/promotores.png" %}"/>
 {% endblock %}

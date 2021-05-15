@@ -1,18 +1,44 @@
 {% extends "pMentHa/layout.html" %}
 {% load static %}
-{% block head %}
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="{% static 'pMentHa/patientoverview.css' %}">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
-{% endblock %}
 {% block body %}
-
-        <div class="mainmenu">
-            <a class="unactive" href="{% url 'regPatient' %}">Inscrição de Pacientes</a>
-            <a class= "active" href="{% url 'patientoverview' %}">Avaliações</a>
+    <header>
+        <div class="topmenu">
+            <a href="{% url 'index' %}"><i class="fa fa-fw fa-home"></i> Home</a>
+            <div class="dropdown">
+                <button class="dropbtn"><i class="fas fa-head-side-virus"></i> Projeto MentHa</button>
+                <div class="dropdown-content">
+                     {% if user.is_authenticated %}
+                        <a href="{% url 'patientoverview' %}">ProtocoloMentHa</a>
+                    {% else %}
+                        <a href="{% url 'login_' %}">ProtocoloMentHa</a>
+                    {% endif %}
+                    <a href="{% url 'mentha-care' %}"> MentHaCare</a>
+                    <a href="">MentHaCOG</a>
+                </div>
+            </div>
+            <a href=""><i class="fa fa-fw fa-envelope"></i> Contactos</a>
+            <div class="top-right">
+                {% if user.is_authenticated %}
+                    <div class="dropdown">
+                        <button class="dropbtn">Bem vindo {{ user.username }}!</button>
+                        <div class="dropdown-content2">
+                            <a href="{% url 'logout_' %}"><i class="fas fa-sign-out-alt"></i>Logout</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <a href="{% url 'login_' %}"><i class="fas fa-fingerprint"></i> Login</a>
+                {% endif %}
+            </div>
         </div>
-
+        <img class="img" src="{% static "pMentHa/images/mentha.png" %}" alt="velhotes"/>
+    </header>
+    <hr class="line">
+    <main>
+        <div class="mainmenu">
+            <a class="unactive" href="{% url 'regPatient' %}">Inscrição de Paciente</a>
+            <a class="active" href="{% url 'patientoverview' %}">Avaliações</a>
+        </div>
+        <h2 class="h2_po">Tabela de Avaliações</h2>
         <table>
             <tr>
                 <th>Paciente</th>
@@ -23,35 +49,34 @@
                 <th>Pós Teste</th>
             </tr>
             {% for patient in testes %}
-            <tr>
-                <td>{{ patient.name }}</td>
+                <tr>
+                    <td>{{ patient.name }}</td>
 
-                {% for test in patient.doneResolutions%}
-                <td>
-                    <a href="{% url 'report' test %}">
-                    <p style="color: #4EB4BE">Relatório</p>
-                    </a>
-                </td>
-                {% endfor %}
+                    {% for test in patient.doneResolutions %}
+                        <td>
+                            <a href="{% url 'report' test %}">
+                                <p style="color: #4EB4BE">Relatório</p>
+                            </a>
+                        </td>
+                    {% endfor %}
 
-                {% for test in patient.nextTest%}
-                <td>
-                    <a href="{% url 'fazPrimeiraPergunta' test patient.id %}">
-                    <p style="color: green"> Iniciar Teste {{ test }}</p>
-                    </a>
-                </td>
-                {% endfor %}
+                    {% for test in patient.nextTest %}
+                        <td>
+                            <a href="{% url 'fazPrimeiraPergunta' test patient.id %}">
+                                <p style="color: green"> Iniciar Teste {{ test }}</p>
+                            </a>
+                        </td>
+                    {% endfor %}
 
-                {% for test in patient.toDoTests%}
-                <td>
-                    <p style="color: grey">Teste {{ test }}</p>
-                </td>
-                {% endfor %}
-            </tr>
-        {% endfor %}
+                    {% for test in patient.toDoTests %}
+                        <td>
+                            <p style="color: grey">Teste {{ test }}</p>
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
         </table>
-
         <br>
-        <img class="promotores" src="{% static "pMentHa/images/promotores.png"%}"/>
-
+        <img class="promotores" src="{% static "pMentHa/images/promotores.png" %}"/>
+    </main>
 {% endblock %}

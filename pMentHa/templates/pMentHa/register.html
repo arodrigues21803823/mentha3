@@ -1,0 +1,42 @@
+{% extends "pMentHa/layout.html" %}
+{% load static %}
+{% block body %}
+    <header>
+        <div class="topmenu">
+            <a href="{% url 'index' %}"><i class="fa fa-fw fa-home"></i> Home</a>
+            <div class="dropdown">
+                <button class="dropbtn"><i class="fas fa-head-side-virus"></i> Projeto MentHa</button>
+                <div class="dropdown-content">
+                    <a href="{% url 'patientoverview' %}">ProtocoloMentHa</a>
+                    <a href="{% url 'mentha-care' %}"> MentHaCare</a>
+                    <a href="">MentHaCOG</a>
+                </div>
+            </div>
+            <a href=""><i class="fa fa-fw fa-envelope"></i> Contactos</a>
+            <div class="top-right">
+                <a class="active" href="{% url 'login_' %}"><i class="fas fa-fingerprint"></i> Login</a>
+            </div>
+        </div>
+
+        <img class="img" src="{% static "pMentHa/images/mentha.png" %}" alt="velhotes"/>
+    </header>
+    <hr class="line">
+    <div class="wrapper">
+        <div id="formContent">
+            <a href="{% url 'login_' %}"><h4 class="inactiveH2 underlineHover2"> Log In </h4></a>
+            <h4 class="activeH2">Registar </h4>
+            <form action="{% url 'register' %}" method="post">
+                {% csrf_token %}
+                <input class="login_text" type="text" id="login" name="username" placeholder="username">
+                <input class="login_text" type="text" id="login" name="email" placeholder="e-mail">
+                <input class="login_password" type="password" id="password" name="password" placeholder="palavra-chave">
+                <input class="login_password" type="password" id="password" name="confirmation" placeholder="Confirmar Palavra-chave">
+                <a href='patientoverview-novo.html'><input class="but" type="submit" value="registar"></a>
+            </form>
+            <div id="formFooter">
+                <a class="underlineHover" href="{% url 'register' %}">Forgot Password?</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -3,21 +3,16 @@
 <html lang="en">
     <head>
         {% load static %}
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="{% static 'pMentHa/styles.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'pMentHa/css/all.min.css' %}">
         <link rel="shortcut icon" type="image/x-icon" href="{% static 'pMentHa/images/favicon.ico' %}"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
         <title>MentHa</title>
         {% block head %}
         {% endblock %}
     </head>
-    <header>
-        <div class="topmenu">
-            <a class="active" href="{% url 'index' %}">Home</a>
-            <a href="{% url 'patientoverview' %}">ProtocoloMentHa</a>
-            <a href="multimedia.html">MentHaCare</a>
-            <a href="info.html">MentHaCOG</a>
-            <a href="info.html">About Us</a>
-        </div>
-        <img class="img" src="{% static "pMentHa/images/mentha.png" %}" />
-    </header>
 {% block body %}
 {% endblock %}
 </html>

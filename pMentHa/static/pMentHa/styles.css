@@ -1,0 +1,561 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-position: center;
+}
+
+/*Menu Superior*/
+.topmenu {
+    background-color: #4EB4BE;
+    overflow: hidden;
+
+}
+
+.topmenu a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    font-family: 'Roboto', sans-serif;
+}
+.topmenu span {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.topmenu a:hover {
+    background-color: #7CDDEA;
+    color: white;
+}
+
+.topmenu a.active {
+    background-color: #7CDDEA;
+    color: white;
+}
+
+.top-right {
+    float: right;
+}
+
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+.dropdown .dropbtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: #f2f2f2;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #7CDDEA;
+    color: white;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #4EB4BE;
+    min-width: 160px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    float: none;
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #7CDDEA;
+    color: white;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    color: white;
+}
+
+.dropdown-content2 {
+    display: none;
+    position: absolute;
+    background-color: #4EB4BE;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content2 a {
+    float: none;
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content2 a:hover {
+    background-color: #7CDDEA;
+    color: white;
+}
+
+.dropdown:hover .dropdown-content2 {
+    display: block;
+    color: white;
+}
+
+/*Headers e textos*/
+h1 {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    padding-top: 45px;
+}
+
+.h2_index {
+    font-family: 'Roboto', sans-serif;
+    font-size: x-large;
+    margin-top: -300px;
+    padding-left: 165px;
+    font-weight: bolder;
+}
+
+.h2_po {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    font-size: x-large;
+    font-weight: bolder;
+}
+
+/*login*/
+
+/*Index*/
+.img {
+    display: block;
+    width: 80%;
+    padding-top: 30px;
+    margin: auto;
+}
+
+.explain {
+    text-align: justify;
+    padding-right: 20%;
+    font-family: 'Roboto', sans-serif;
+    margin-left: 165px;
+    margin-right: 260px;
+    margin-top: -10px;
+    font-weight: lighter;
+
+}
+
+.line {
+    display: block;
+    margin-top: 50px;
+    height: 1.5px;
+    border-width: 0;
+    color: #4EB4BE;
+    background-color: #4EB4BE;
+    width: 89%;
+}
+
+.vl {
+    display: block;
+    margin-left: 85px;
+    margin-top: 35px;
+    border-left: 1.5px solid #4EB4BE;
+    height: 450px;
+
+}
+
+.promotores {
+    display: flex;
+    width: 808px;
+    height: 65px;
+    margin: 80px auto auto;
+}
+
+.velhinhos {
+    display: block;
+    width: 302px;
+    height: 198px;
+    margin-left: auto;
+    margin-top: -350px;
+    margin-right: 85px;
+}
+
+/*Patient Overview*/
+main {
+    float: left;
+    width: 100%;
+    padding: 0 115px;
+    text-align: justify;
+    font-family: 'Roboto', sans-serif;
+}
+
+.mainmenu {
+    background-color: #4EB4BE;
+    overflow: hidden;
+    transition: box-shadow .3s;
+
+}
+
+.mainmenu a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    font-family: 'Roboto', sans-serif;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.mainmenu a:hover {
+    background-color: #7CDDEA;
+    color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+
+}
+
+.mainmenu a.active {
+    background-color: #7CDDEA;
+    color: white;
+    text-align: center;
+    width: 50%;
+}
+
+.mainmenu a.unactive {
+    display: block;
+    text-align: center;
+    width: 50%;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 30px;
+}
+
+td, th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: #4CAF50;
+    color: white;
+}
+
+/*Registar Paciente*/
+.container {
+    width: 100%;
+    height: 100%;
+}
+
+.col-left {
+    width: 30%;
+    height: 100%;
+    float: left;
+    text-align: left;
+}
+
+.col-middle {
+    width: 40%;
+    height: 100%;
+    float: left;
+    padding-left: 130px;
+    padding-top: 67px;
+
+}
+
+.col-right {
+    width: 20%;
+    height: 50%;
+    position: relative;
+    float: right;
+}
+
+.square {
+    display: flex;
+    border: 2px solid black;
+    margin: 10%;
+    height: 150px;
+    width: 30%;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.square p {
+    font-family: 'Roboto', sans-serif;
+    font-size: small;
+    text-align: center;
+}
+
+.pat, select {
+    width: 100%;
+    padding: 8px 5px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-left: 30px;
+}
+
+input[type=date], select {
+    width: 100%;
+    padding: 8px 5px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-left: 30px;
+    background-color: #f6f6f6;
+}
+
+input[type=number], select {
+    width: 100%;
+    padding: 8px 5px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-left: 30px;
+    background-color: #f6f6f6;
+}
+
+.button {
+    width: 80%;
+    background-color: #4EB4BE;
+    color: white;
+    padding: 14px 20px;
+    margin-top: 100%;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #7CDDEA;
+}
+
+.left {
+    display: inline-block;
+    margin-left: 30px;
+    width: 60%;
+    font-family: 'Roboto', sans-serif;
+    padding-top: 10px;
+}
+
+main.division {
+    width: 80%;
+}
+
+/*Login*/
+
+
+.wrapper {
+    padding-top: 5%;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100%;
+
+}
+
+#formContent {
+    margin: auto;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+    background: #fff;
+    padding: 30px;
+    width: 90%;
+    max-width: 450px;
+    position: relative;
+    -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+#formFooter {
+    background-color: #f6f6f6;
+    border-top: 1px solid #dce8f1;
+    padding: 25px;
+    text-align: center;
+    -webkit-border-radius: 0 0 10px 10px;
+    border-radius: 0 0 10px 10px;
+}
+
+.inactiveH2 {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: inline-block;
+    margin: 0px 8px 20px 10px;
+    color: #cccccc;
+}
+.activeH2 {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: inline-block;
+    margin: 10px 8px 10px 8px;
+    color: #0d0d0d;
+    border-bottom: 2px solid #4EB4BE;
+}
+
+.but[type=submit], input[type=reset] {
+    background-color: #4EB4BE;
+    border: none;
+    color: white;
+    padding: 15px 80px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 13px;
+    -webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+    box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+    margin: 15px 20px 40px 20px;
+}
+
+.but:hover {
+    background-color: #7CDDEA;
+}
+
+.login_text, .login_password {
+    background-color: #f6f6f6;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 5px;
+    width: 85%;
+    border: 2px solid #f6f6f6;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px;
+}
+
+.login_password:focus {
+    background-color: #fff;
+    border-bottom: 2px solid #4EB4BE;
+}
+
+.login_text:focus {
+    background-color: #fff;
+    border-bottom: 2px solid #4EB4BE;
+}
+
+input[type=number]:focus {
+    background-color: #fff;
+    border-bottom: 2px solid #4EB4BE;
+}
+
+input[type=date]:focus {
+    background-color: #fff;
+    border-bottom: 2px solid #4EB4BE;
+}
+
+.login_text::placeholder, .login_password::placeholder {
+    color: #cccccc;
+    text-transform: uppercase;
+}
+
+.underlineHover {
+    color: #92badd;
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 400;
+}
+
+.underlineHover:after {
+    display: block;
+    left: 0;
+    bottom: -10px;
+    width: 0;
+    height: 2px;
+    background-color: #4EB4BE;
+    content: "";
+    transition: width 0.2s;
+}
+
+.underlineHover:hover {
+    color: #0d0d0d;
+}
+
+.underlineHover:hover:after {
+    width: 100%;
+}
+
+.underlineHover2 {
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 400;
+}
+
+.underlineHover2:after {
+    display: block;
+    left: 0;
+    bottom: -10px;
+    width: 0;
+    height: 2px;
+    background-color: #4EB4BE;
+    content: "";
+    transition: width 0.2s;
+}
+
+.underlineHover2:hover {
+    color: #0d0d0d;
+}
+
+.underlineHover2:hover:after {
+    width: 100%;
+}
+
+
+*:focus {
+    outline: none;
+}
+
+/*Registo*/
