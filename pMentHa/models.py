@@ -98,25 +98,20 @@ def criaTabelaTestes():
     testes = []
     for patient in Patient.objects.all():
 
-        dicPatient = {}
-
-        dicPatient["name"] = patient.name
-        dicPatient["id"] = patient.id
-
-        doneResolutions = []
+        dicPatient = {"name": patient.name, "id": patient.id}
+        doneTests = []
         for test in patient.tests.all():
-            doneResolutions.append(test.id)
-        dicPatient["doneResolutions"] = doneResolutions
+            doneTests.append(test.id)
+        dicPatient["doneTests"] = doneTests
 
-        if len(doneResolutions) < 5:
-            dicPatient["nextTest"] = [len(doneResolutions) + 1]
+        if len(doneTests) < 5:
+            dicPatient["nextTest"] = [len(doneTests) + 1]
 
         toDoTests = []
-        if len(doneResolutions) < 5:
-            for i in range(len(doneResolutions) + 2, 5 + 1):
+        if len(doneTests) < 5:
+            for i in range(len(doneTests) + 2, 5 + 1):
                 toDoTests.append(i)
         dicPatient["toDoTests"] = toDoTests
-
         testes.append(dicPatient)
 
     return testes
@@ -145,11 +140,18 @@ def addTest(testID, patientID):
     return newPatient
 
 
-def questionsAwnsers(resolutionID):
-    list = {}
-    questionCount = 0
+def questionsAwnsers(resolutionID, testID):
     anwsers = Answer.objects.filter(resolution=resolutionID)
-    for i in anwsers:
-        list[questionCount] = Answer.objects.get(resolution=resolutionID, question = questionCount+1)
-        questionCount += 1
+    order = 0
+    count = 0
+    dicpergunta = {}
+    test = len(Test.questions.filter(pk=testID))
+    while count < len(test):
+        question = QuestionOrder.objects.get(order=order + 1, test=testID)
+        answer = Answer.objects.get(resolution=resolutionID, question=question)
+        dicpergunta[question.question] = answer.text
+        order += 1
+        count += 1
+
     print(list)
+    return list

@@ -559,3 +559,11 @@ input[type=date]:focus {
 }
 
 /*Registo*/
+
+/*Teste*/
+.categoria{
+    color: blue;
+}
+.test{
+    float: left;
+}

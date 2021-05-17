@@ -2,15 +2,40 @@
 {% extends "pMentHa/layout.html" %}
 {% load static %}
 {% block body %}
-    <h1>{{ question.category }}</h1>
-    <form action="{% url 'fazPergunta' resolutionID question.id %}" method="POST">
-        {% csrf_token %}
-        <p>{{ question.text }}</p>
-        {% for option in options %}
-            <label><input type="radio" name="resposta" value="{{ option }}">: {{ option.option }}</label>
-        {% endfor %}
-        <br>
-        <input class="testButton" type="submit" value="Próxima Pergunta">
-        <p>{{question.explain}}</p>
-    </form>
+    <header>
+        <div class="topmenu">
+            <a href="{% url 'index' %}"><i class="fa fa-fw fa-home"></i> Home</a>
+            <div class="dropdown">
+                <button class="dropbtn"><i class="fas fa-head-side-virus"></i> Projeto MentHa</button>
+                <div class="dropdown-content">
+                    <a class="active" href="{% url 'patientoverview' %}">ProtocoloMentHa</a>
+                    <a href="{% url 'mentha-care' %}"> MentHaCare</a>
+                    <a href="">MentHaCOG</a>
+                </div>
+            </div>
+            <a href=""><i class="fa fa-fw fa-envelope"></i> Contactos</a>
+            <div class="top-right">
+                <div class="dropdown">
+                    <button class="dropbtn">Bem vindo {{ user.username }}!</button>
+                    <div class="dropdown-content2">
+                        <a href="{% url 'logout_' %}"><i class="fas fa-sign-out-alt"></i>Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img class="img" src="{% static "pMentHa/images/mentha.png" %}" alt="velhotes"/>
+    </header>
+    <div class="test">
+        <h2 class="categoria">{{ question.category }}</h2>
+        <form action="{% url 'fazPergunta' resolutionID question.id %}" method="POST">
+            {% csrf_token %}
+            <p>{{ order }}. {{ question.text }}</p>
+            {% for option in options %}
+                <label><input type="radio" name="resposta" value="{{ option }}">: {{ option.option }}</label>
+            {% endfor %}
+            <br>
+            <input class="testButton" type="submit" value="Próxima Pergunta">
+            <p>{{ question.explain }}</p>
+        </form>
+    </div>
 {% endblock %}

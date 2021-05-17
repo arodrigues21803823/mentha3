@@ -143,7 +143,8 @@ def fazPergunta(request, resolutionID, questionID):
             return render(request, "pMentHa/perguntas/multipla.html", {
                 "question": question,
                 "resolutionID": resolutionID,  # permite identificar patient e test
-                "options": options
+                "options": options,
+                "order": order + 1
             })
 
 
@@ -171,7 +172,9 @@ def fazPrimeiraPergunta(request, testID, patientID):
         })
 
 
-def report(request, resolutionID):
-    questionsAwnsers(resolutionID)
-    return render(request, "pMentHa/report.html"), {
-    }
+def report(request, testID, patientID):
+    resolutionID = Resolution.objects.get(test=testID, patient=patientID)
+    return render(request, "pMentHa/report.html", {
+        "questionsList": questionsAwnsers(resolutionID, testID),
+        "advisor": Test.objects.get(pk=testID).advisor.name
+    })

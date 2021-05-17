@@ -12,7 +12,7 @@ urlpatterns = [
     path("Registo", views.regPatient, name="regPatient"),
     path("Teste<int:testID>-Paciente<int:patientID>", views.fazPrimeiraPergunta, name="fazPrimeiraPergunta"),
     path("Resolucao<int:resolutionID>-Questao<int:questionID>", views.fazPergunta, name="fazPergunta"),
-    path("report<int:resolutionID>", views.report, name="report"),
+    path("Report<int:testID>-<int:patientID>", views.report, name="report"),
     #Django Auth
 
     path("login_", views.login_, name="login_"),

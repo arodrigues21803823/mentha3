@@ -52,25 +52,25 @@
                 <tr>
                     <td>{{ patient.name }}</td>
 
-                    {% for test in patient.doneResolutions %}
+                    {% for testID in patient.doneTests %}
                         <td>
-                            <a href="{% url 'report' test %}">
+                            <a href="{% url 'report' testID patient.id %}">
                                 <p style="color: #4EB4BE">Relatório</p>
                             </a>
                         </td>
                     {% endfor %}
 
-                    {% for test in patient.nextTest %}
+                    {% for testID in patient.nextTest %}
                         <td>
-                            <a href="{% url 'fazPrimeiraPergunta' test patient.id %}">
-                                <p style="color: green"> Iniciar Teste {{ test }}</p>
+                            <a href="{% url 'fazPrimeiraPergunta' testID patient.id %}">
+                                <p style="color: green"> Iniciar Teste {{ testID }}</p>
                             </a>
                         </td>
                     {% endfor %}
 
-                    {% for test in patient.toDoTests %}
+                    {% for testID in patient.toDoTests %}
                         <td>
-                            <p style="color: grey">Teste {{ test }}</p>
+                            <p style="color: grey">Teste {{ testID }}</p>
                         </td>
                     {% endfor %}
                 </tr>

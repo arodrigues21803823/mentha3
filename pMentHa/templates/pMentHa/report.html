@@ -5,11 +5,13 @@
     <link rel="stylesheet" type="text/css" href="{% static 'pMentHa/report.css' %}">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
-    <a href="{% url 'patientoverview' %}"><button class="button">Back</button></a>
 {% endblock %}
 {% block body %}
         <img class="img" src="{% static "pMentHa/images/mentha.png" %}" />
-        <h3>O Relatório foi realizado pelo Revisor {{ reportAdvisor }}</h3>
+        <h3>O Relatório foi realizado pelo Revisor {{ advisor }}</h3>
         <br>
-        <p>{{ reportText }}</p>
+        <p>{{% for  in advisor %}
+
+        {% endfor %}
+        </p>
 {% endblock %}
