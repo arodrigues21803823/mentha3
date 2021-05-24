@@ -29,7 +29,7 @@ SECRET_KEY = env.str("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DEBUG", default=False)
 
-ALLOWED_HOSTS = ['projeto-mentha.herokuapp.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1']
 
 # Application definition
 
@@ -46,7 +46,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',    # novo
+    'whitenoise.middleware.WhiteNoiseMiddleWare',    # novo
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -118,7 +118,7 @@ USE_TZ = True
 
 STATIC_ROOT = str(BASE_DIR.joinpath('staticfiles'))   # novo
 
-STATICFILES_DIRS = [str(BASE_DIR.joinpath('PMentHa/static'))]
+STATICFILES_DIRS = [str(BASE_DIR.joinpath('pMentHa/static'))]
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'  # novo
 
