@@ -16,7 +16,6 @@ from environs import Env
 env = Env()
 env.read_env()
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -44,19 +43,18 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+ROOT_URLCONF = 'mentHa1.urls'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleWare',    # novo
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-ROOT_URLCONF = 'mentHa1.urls'
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -79,8 +77,8 @@ WSGI_APPLICATION = 'mentHa1.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-      "default": env.dj_db_url("DATABASE_URL")
- }
+    "default": env.dj_db_url("DATABASE_URL")
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -116,11 +114,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_ROOT = str(BASE_DIR.joinpath('staticfiles'))   # novo
+STATIC_ROOT = str(BASE_DIR.joinpath('staticfiles'))  # novo
 
 STATICFILES_DIRS = [str(BASE_DIR.joinpath('pMentHa/static'))]
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'  # novo
 
 STATIC_URL = '/static/'
-
