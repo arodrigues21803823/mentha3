@@ -121,3 +121,5 @@ STATICFILES_DIRS = [str(BASE_DIR.joinpath('pMentHa/static'))]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'  # novo
 
 STATIC_URL = '/static/'
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'

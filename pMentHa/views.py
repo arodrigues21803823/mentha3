@@ -79,7 +79,6 @@ def register(request):
 
 
 def patientoverview(request):
-
     return render(request, "pMentHa/patientoverview-novo.html", {
         "patients": Patient.objects.all(),
         "tests": Test.objects.all(),
@@ -147,35 +146,58 @@ def fazPergunta(request, resolutionID, questionID):
                 "options": options,
                 "order": order + 1
             })
+        else:
+            return render(request, "pMentHa/perguntas/desenvolvimento.html", {
+                "question": question,
+                "resolutionID": resolutionID,  # permite identificar patient e test
+                "order": order + 1
+            })
+
 
 
 def fazPrimeiraPergunta(request, testID, patientID):
     """Esta função é chamada quando na tabela se inicia um teste """
+    #Implementar o test.statement antes da primeira pergunta
     question = QuestionOrder.objects.get(test=testID, order=1).question
     options = Option.objects.filter(question=question.id)
     patientInstance = Patient.objects.get(pk=patientID)
     testInstance = Test.objects.get(pk=testID)
-    resolution = Resolution.objects.create(test=testInstance, patient=patientInstance)
-    addTest(testID, patientID)
-
-    if question.multipla:
-        return render(request, "pMentHa/perguntas/multipla.html", {
-            "question": question,
-            "resolutionID": resolution.id,  # permite identificar patient e test
-            "options": options,
-            "order": 1
+    resolution = resolution_exists(patientInstance, testInstance)
+    #alterar o if resolution
+    if resolution:
+        return render(request, "pMentHa/patientoverview-novo.html", {
+            "patients": Patient.objects.all(),
+            "tests": Test.objects.all(),
+            "reports": Report.objects.all(),
+            "testes": criaTabelaTestes()
         })
     else:
-        return render(request, "pMentHa/perguntas/desenvolvimento.html", {
-            "question": question,
-            "resolutionID": resolution.id,  # permite identificar patient e test
-            "order": 1
-        })
+        resolution = Resolution.objects.create(test=testInstance, patient=patientInstance)
+        addTest(testID, patientID)
+        if question.multipla:
+            return render(request, "pMentHa/perguntas/multipla.html", {
+                "question": question,
+                "resolutionID": resolution.id,  # permite identificar patient e test
+                "options": options,
+                "order": 1
+            })
+        else:
+            return render(request, "pMentHa/perguntas/desenvolvimento.html", {
+                "question": question,
+                "resolutionID": resolution.id,  # permite identificar patient e test
+                "order": 1
+            })
 
 
 def report(request, testID, patientID):
     resolutionID = Resolution.objects.get(test=testID, patient=patientID)
+    report = report_exists(resolutionID)
+    question = QuestionOrder.objects.get(test=testID, order=1).question
+    answer = Answer.objects.get(resolution=resolutionID, question=question.id)
+    print(report)
     return render(request, "pMentHa/report.html", {
-        "questionsList": questionsAwnsers(resolutionID, testID),
-        "advisor": Test.objects.get(pk=testID).advisor.name
+       # "questionsList": questionsAwnsers(resolutionID, testID),
+        "advisor": Test.objects.get(pk=testID).advisor.name,
+        "question": question,
+        "answer": answer
     })

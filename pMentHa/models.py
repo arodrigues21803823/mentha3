@@ -11,13 +11,22 @@ class Question(models.Model):
     stimulus = models.IntegerField()
 
     def __str__(self):
-        return f"{self.text}"
+        return f"{self.text[:30]}"
 
 
 class Option(models.Model):
     question = models.ForeignKey('Question', on_delete=models.SET_NULL, null=True)
     option = models.TextField(max_length=1000)
     order = models.IntegerField()
+
+
+
+    #class question_mulitple
+    # quotation associada ao valor (0,1,2) para depois somar
+
+
+
+
 
     def __str__(self):
         return f"Question:{self.question.text}, option:{self.option}, order:{self.order}"
@@ -82,7 +91,7 @@ class Resolution(models.Model):
     test = models.ForeignKey('Test', on_delete=models.SET_NULL, null=True, related_name="test")
 
     def __str__(self):
-        return f"{self.id}"
+        return f"{self.id}, {self.patient}, {self.test}"
 
 
 class Report(models.Model):
@@ -155,3 +164,16 @@ def questionsAwnsers(resolutionID, testID):
 
     print(list)
     return list
+
+
+def report_exists(resolutionID):
+    report = Report.objects.filter(resolution=resolutionID)
+    return report
+
+
+def resolution_exists(patientID, testID):
+    resolution = Resolution.objects.filter(patient=patientID, test=testID)
+    if resolution:
+        return True
+    else:
+        return False

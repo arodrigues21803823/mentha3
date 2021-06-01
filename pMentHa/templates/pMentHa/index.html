@@ -20,7 +20,7 @@
             <div class="top-right">
                 {% if user.is_authenticated %}
                     <div class="dropdown">
-                        <button class="dropbtn">Bem vindo {{ user.username }}!</button>
+                        <button class="dropbtn">Bem vindo {{user.username}}!</button>
                         <div class="dropdown-content2">
                             <a href="{% url 'logout_' %}"><i class="fas fa-sign-out-alt"></i>Logout</a>
                         </div>
