@@ -24,30 +24,45 @@
         </div>
         <img class="img" src="{% static "pMentHa/images/mentha.png" %}" alt="velhotes"/>
     </header>
+    <h1 style="text-align: center;margin-top: 5%; color: darkslategrey;text-transform: uppercase">{{ test }}</h1>
     <div class="multiple">
         <h2 class="categoria">{{ question.category }}</h2>
         <form action="{% url 'fazPergunta' resolutionID question.id %}" method="POST" id="usrform">
             {% csrf_token %}
             {% if image %}
-                <a href="http://www.google.pt" target="_blank">
-                <img width="220" height="250" src="{% static image %}" alt="Snow"></a>
-            {% endif %}
-            {% if question.explain %}
-                <h4> Explicação:</h4>
-                <p style="text-align: justify">{{ question.explain }}</p>
-                <br>
+                <img id="myImg" src="{% static image %}" alt="Snow"
+                     style="position:absolute;width:100%;max-width:100px;margin-left:35%;margin-top:-1%">
+                <div id="myModal" class="modal">
+                    <span class="close">&times;</span>
+                    <img class="modal-content" id="img01">
+                    <div id="caption"></div>
+                </div>
+                <script>// Get the modal
+                var modal = document.getElementById("myModal");
+
+                // Get the image and insert it inside the modal - use its "alt" text as a caption
+                var img = document.getElementById("myImg");
+                var modalImg = document.getElementById("img01");
+                var captionText = document.getElementById("caption");
+                img.onclick = function () {
+                    modal.style.display = "block";
+                    modalImg.src = this.src;
+                }
+
+                // Get the <span> element that closes the modal
+                var span = document.getElementsByClassName("close")[0];
+
+                // When the user clicks on <span> (x), close the modal
+                span.onclick = function () {
+                    modal.style.display = "none";
+                }</script>
             {% endif %}
             <p>{{ order }}. {{ question.text }}</p>
-            {% if answer %}
-                <textarea name="resposta" rows="10" cols="30">{{ answer }}</textarea>
-            {% else %}
-                <textarea name="resposta" rows="10" cols="30"></textarea>
-            {% endif %}
-            <br>
+            <textarea name="resposta" rows="10" cols="30">{{ answer }}</textarea>
             <input class="testButton" type="submit" value="Próxima Pergunta">
+            <p>{{ question.explain }}</p>
         </form>
-        <br>
-        <a href="{% url 'prevPergunta' resolutionID question.id %}">
+    <a href="{% url 'reportPrevQuestion' resolutionID question.id %}">
             <button class="testButton3">Pergunta Anterior</button>
         </a>
     </div>

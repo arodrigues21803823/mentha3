@@ -30,11 +30,17 @@
     </header>
     <hr class="line">
     <main>
-        <div class="mainmenu">
-            <a class="unactive" href="{% url 'regPatient' %}">Inscrição de Paciente</a>
-            <a class="active" href="{% url 'patientoverview' %}">Avaliações</a>
-        </div>
-        <h2 class="h2_po">Tabela de Avaliações</h2>
+        <p class="summary-title">{{ patient.name }}</p>
+        <p class="summary-date">{{ age }} anos</p>
+        <p class="summary-number">{{ patient.number }}</p>
+        <div class="vl2"></div>
+        <p class="summary-title2">Doenças Degenerativas:</p>
+        <p class="summary-number2">▪{{ patient.disease2 }}</p>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
         <table>
             <tr>
                 <th>Paciente</th>
@@ -46,38 +52,33 @@
             </tr>
             {% for patient in testes %}
                 <tr>
-                    <td style="text-transform: capitalize"><a style="text-decoration: none" href="{% url 'patientSummary' patient.id %}"><p style="color: #0d0d0d">{{ patient.name }}</p></a></td>
+                    <td style="text-transform: capitalize">{{ patient.name }}</td>
 
                     {% for testID in patient.doneTests %}
-                        <td style="background-color: #7DD3D9">
+                        <td>
                             <a href="{% url 'firstReportQuestion' testID patient.id %}">
-                                <p style="color: black"><i class="far fa-file-alt"></i></p>
+                                <p style="color: #4EB4BE">Relatório</p>
                             </a>
                         </td>
                     {% endfor %}
 
                     {% for testID in patient.nextTest %}
-                        <td style="background-color: #D6D6D6">
-                            <a style="text-decoration: none" href="{% url 'fazPrimeiraPergunta' testID patient.id %}">
-                                <p style="color: black"> Iniciar Teste</p>
+                        <td>
+                            <a href="{% url 'fazPrimeiraPergunta' testID patient.id %}">
+                                <p style="color: #4EB4BE"> Iniciar Teste {{ testID }}</p>
                             </a>
                         </td>
                     {% endfor %}
 
                     {% for testID in patient.toDoTests %}
                         <td>
-                            <p style="color: grey"></p>
+                            <p style="color: grey">Teste {{ testID }}</p>
                         </td>
                     {% endfor %}
                 </tr>
             {% endfor %}
         </table>
         <br>
-        <br>
-        <i class="fas fa-square" style="margin-left: 10px; color: #7DD3D9"></i> Teste Concluído
-        <br>
-        <br>
-        <i class="far fa-file-alt" style="margin-left: 10px"></i> Avaliação Disponível
         <img class="promotores" src="{% static "pMentHa/images/promotores.png" %}"/>
     </main>
 {% endblock %}

@@ -33,20 +33,27 @@
         <div class="vl"></div>
         <img class="velhinhos" src="{% static "pMentHa/images/velhinhos.png" %}" alt="velhotes">
         <br>
-        <h2 class="h2_index"> MentHA-CARE</h2>
+        <h2 class="h2_index"> Protocolo MentHa</h2>
         <br>
         <div class="explain">
-             <p>O programa
-            MentHA-CARE concretiza uma intervenção psicoeducativa junto de
-                 cuidadores informais de pessoas com doença mental.</p>
-            <p>Pretende-se promover o conhecimento acerca de algumas doenças mentais/crónicas
-            (ex. demência, perturbação bipolar, esquizofrenia, incapacidade intelectual,
-            epilepsia); explorar estratégias de comunicação e de gestão de comportamentos
-            desafiantes; promover boas práticas na prestação dos cuidados; conhecer os recursos
-            de apoio legais e da comunidade; Explorar estratégias de gestão emocional e
-            de coping; incentivar o autocuidado dos CI e a valorização do papel de cuidador.</p>
+            <p> Protocolo de Avaliação MentHA, é um instrumento composto por várias provas
+                neuropsicoló-gicas cuja selecção tem como objectivo proporcionar uma avaliação global do funcionamento
+                (i) neurocognitivo (atenção complexa, função executiva, aprendizagem e memória linguagem
+                per-ceptivomotor e a cognição social), (i) emocional (ansiedade, depressão), (iii) funcional
+                (activida-des básicas e instrumentais de vida diária) e (iv) comportamental (sintomatologia
+                psicopatoló-gica).</p>
+            <p>Os testes selecionados para este trabalho são frequentemente utilizados na prática
+                clínica internacional e nacional com reconhecida qualidade técnica na identificação das funções
+                cogni-tivas e validados para a população portuguesa. Adicionalmente, a escolha dos instrumentos recaiu
+                também no facto de serem medidas de avaliação de aplicação breve.</p>
         </div>
         <br>
+        <div class="protocolo_options">
+            {% if user.is_authenticated %}
+                <a href="{% url 'regPatient' %}"><button class="testButton1">Inscrição de Pacientes</button></a>
+                <a href="{% url 'patientoverview' %}"><button class="testButton1"style="margin-left: 10px">Avaliação de Pacientes</button></a>
+            {% endif %}
+        </div>
         <br>
         <img class="promotores" src="{% static "pMentHa/images/promotores.png" %}" alt="promotores"/>
     </main>

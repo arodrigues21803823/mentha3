@@ -7,20 +7,16 @@
             <div class="dropdown">
                 <button class="dropbtn"><i class="fas fa-head-side-virus"></i> Projeto MentHa</button>
                 <div class="dropdown-content">
-                    {% if user.is_authenticated %}
-                        <a href="{% url 'patientoverview' %}">ProtocoloMentHa</a>
-                    {% else %}
-                        <a href="{% url 'login_' %}">ProtocoloMentHa</a>
-                    {% endif %}
-                    <a href="{% url 'mentha-care' %}"> MentHaCare</a>
-                    <a href="">MentHaCOG</a>
+                    <a href="{% url 'protocolo' %}"> Protocolo-MentHa</a>
+                    <a href="{% url 'mentha-care' %}"> MentHa-Care</a>
+                    <a href="{% url 'cog' %}">MentHa-COG</a>
                 </div>
             </div>
-            <a href=""><i class="fa fa-fw fa-envelope"></i> Contactos</a>
+            <a href="{% url 'contact' %}"><i class="fa fa-fw fa-envelope"></i> Contactos</a>
             <div class="top-right">
                 {% if user.is_authenticated %}
                     <div class="dropdown">
-                        <button class="dropbtn">Bem vindo {{user.username}}!</button>
+                        <button class="dropbtn">Bem vindo {{ user.username }}!</button>
                         <div class="dropdown-content2">
                             <a href="{% url 'logout_' %}"><i class="fas fa-sign-out-alt"></i>Logout</a>
                         </div>
@@ -35,7 +31,14 @@
     <main>
         <hr class="line">
         <div class="vl"></div>
-        <img class="velhinhos" src="{% static "pMentHa/images/velhinhos.png" %}" alt="velhotes">
+        <div class="velhinhos">
+            <iframe src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Fprojetomentha%2Fvideos%2F268623940710435%2F&show_text=false&width=560&t=0"
+                    width="300" height="230" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+                    allowfullscreen="true"
+                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                    allowFullScreen="true"></iframe>
+        </div>
+
         <br>
         <h2 class="h2_index"> Projeto MentHa</h2>
         <br>
@@ -44,12 +47,6 @@
                 investigadores e instituições público-privadas, sem fins lucrativos, que pretende avaliar os efeitos da
                 reabilitação neuropsicológica em pessoas mais velhas com defeito cognitivo ou demência leve, com e sem
                 patologia mental prévia (diagnosticada). </p>
-            <p class="p_index">Protocolo de Avaliação MentHA, é um instrumento composto por várias provas
-                neuropsicoló-gicas cuja selecção tem como objectivo proporcionar uma avaliação global do funcionamento
-                (i) neurocognitivo (atenção complexa, função executiva, aprendizagem e memória linguagem
-                per-ceptivomotor e a cognição social), (i) emocional (ansiedade, depressão), (iii) funcional
-                (activida-des básicas e instrumentais de vida diária) e (iv) comportamental (sintomatologia
-                psicopatoló-gica). </p>
             <p class="p_index">Os testes selecionados para este trabalho são frequentemente utilizados na prática
                 clínica internacional e nacional com reconhecida qualidade técnica na identificação das funções
                 cogni-tivas e validados para a população portuguesa. Adicionalmente, a escolha dos instrumentos recaiu

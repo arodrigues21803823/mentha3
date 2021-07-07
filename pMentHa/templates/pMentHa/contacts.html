@@ -1,0 +1,69 @@
+{% extends "pMentHa/layout.html" %}
+{% load static %}
+{% block body %}
+    <div class="grid-container">
+        <nav style="overflow:auto">
+            <div class="topmenu">
+                <a href="{% url 'index' %}"><i class="fa fa-fw fa-home"></i> Home</a>
+                <div class="dropdown">
+                    <button class="dropbtn"><i class="fas fa-head-side-virus"></i> Projeto MentHa</button>
+                    <div class="dropdown-content">
+                        <a href="{% url 'protocolo' %}"> Protocolo-MentHa</a>
+                        <a href="{% url 'mentha-care' %}"> MentHa-Care</a>
+                        <a href="{% url 'cog' %}">MentHa-COG</a>
+                    </div>
+                </div>
+                <a href="{% url 'contact' %}"><i class="fa fa-fw fa-envelope"></i> Contactos</a>
+                <div class="top-right">
+                    {% if user.is_authenticated %}
+                        <div class="dropdown">
+                            <button class="dropbtn">Bem vindo {{ user.username }}!</button>
+                            <div class="dropdown-content2">
+                                <a href="{% url 'logout_' %}"><i class="fas fa-sign-out-alt"></i>Logout</a>
+                            </div>
+                        </div>
+                    {% else %}
+                        <a href="{% url 'login_' %}"><i class="fas fa-fingerprint"></i> Login</a>
+                    {% endif %}
+                </div>
+            </div>
+            <figure>
+                <img class="img" src="{% static "pMentHa/images/mentha.png" %}" width="80%" alt="velhotes"/>
+            </figure>
+            <hr class="line">
+            {% if message %}
+                <div style="text-align: center;">
+            <span>
+                {{ message }}
+            </span>
+                </div>
+            {% endif %}
+        </nav>
+        <main>
+            <div class="wrapper">
+                <div id="formContent">
+                    <h4 class="activeH2"> Precisa de Ajuda? </h4>
+                    {% if message %}
+                        <p>{{ message }}</p>
+                    {% endif %}
+                    <form action="{% url 'contact' %}" method="POST">
+                        {% csrf_token %}
+                        <label class="contact" for="fname">E-mail:</label>
+                        <br>
+                        <input class="login_text" type="email" id="email" name="email" placeholder="example@example.pt">
+                        <label class="contact" for="fname">Nome:</label>
+                        <br>
+                        <input class="login_text" type="name" id="name" name="name" placeholder="João Maria">
+                        <label class="contact" for="fname">Contacto:</label>
+                        <br>
+                        <input class="login_text" type="number" id="contact" name="contact" placeholder="+351 9XX XXX XXX ">
+                        <label class="contact" for="date">Data de Nascimento:</label>
+                        <br>
+                        <input class="login_text" type="date" id="date" name="date">
+                        <input class="but" type="submit" value="Enviar">
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock %}

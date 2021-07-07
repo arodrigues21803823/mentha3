@@ -7,12 +7,12 @@
             <div class="dropdown">
                 <button class="dropbtn"><i class="fas fa-head-side-virus"></i> Projeto MentHa</button>
                 <div class="dropdown-content">
-                    <a href="{% url 'patientoverview' %}">ProtocoloMentHa</a>
-                    <a href="{% url 'mentha-care' %}"> MentHaCare</a>
-                    <a href="">MentHaCOG</a>
+                    <a href="{% url 'protocolo' %}">Protocolo-MentHa</a>
+                    <a href="{% url 'mentha-care' %}"> MentHa-Care</a>
+                    <a href="{% url 'cog' %}">MentHa-COG</a>
                 </div>
             </div>
-            <a href=""><i class="fa fa-fw fa-envelope"></i> Contactos</a>
+            <a href="{% url 'contact' %}"><i class="fa fa-fw fa-envelope"></i> Contactos</a>
             <div class="top-right">
                 <a class="active" href="{% url 'login_' %}"><i class="fas fa-fingerprint"></i> Login</a>
             </div>
@@ -22,15 +22,20 @@
     </header>
     <hr class="line">
     <div class="wrapper">
+        {% if message %}
+            <h2 style="text-align: center;color: red">{{ message }}</h2>
+        {% endif %}
         <div id="formContent">
             <a href="{% url 'login_' %}"><h4 class="inactiveH2 underlineHover2"> Log In </h4></a>
             <h4 class="activeH2">Registar </h4>
             <form action="{% url 'register' %}" method="post">
                 {% csrf_token %}
-                <input class="login_text" type="text" id="login" name="username" placeholder="username">
-                <input class="login_text" type="text" id="login" name="email" placeholder="e-mail">
-                <input class="login_password" type="password" id="password" name="password" placeholder="palavra-chave">
-                <input class="login_password" type="password" id="password" name="confirmation" placeholder="Confirmar Palavra-chave">
+                <input class="login_text" type="text" id="login" name="username" placeholder="Utilizador">
+                <input class="login_text" type="text" id="login" name="email" placeholder="E-mail">
+                <input class="login_password" type="password" id="password" name="password" placeholder="Palavra-Chave">
+                <input class="login_password" type="password" id="password" name="confirmation"
+                       placeholder="Confirmar Palavra-chave">
+                <input class="login_password" type="password" id="code" name="code" placeholder="Código MentHA">
                 <a href='patientoverview-novo.html'><input class="but" type="submit" value="registar"></a>
             </form>
             <div id="formFooter">

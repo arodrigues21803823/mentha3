@@ -1,3 +1,4 @@
+<!-- snippet, pedaço de codigo para inserir no template -->
 {% extends "pMentHa/layout.html" %}
 {% load static %}
 {% block body %}
@@ -24,30 +25,31 @@
         </div>
         <img class="img" src="{% static "pMentHa/images/mentha.png" %}" alt="velhotes"/>
     </header>
+    <h1 style="text-align: center;margin-top: 5%; color: darkslategrey;text-transform: uppercase">{{ test }}</h1>
     <div class="multiple">
         <h2 class="categoria">{{ question.category }}</h2>
-        <form action="{% url 'fazPergunta' resolutionID question.id %}" method="POST" id="usrform">
+        <form action="{% url 'reportnextQuestion' resolutionID question.id %}" method="POST" id="usrform">
             {% csrf_token %}
             {% if image %}
                 <a href="http://www.google.pt" target="_blank">
                 <img width="220" height="250" src="{% static image %}" alt="Snow"></a>
             {% endif %}
-            {% if question.explain %}
-                <h4> Explicação:</h4>
-                <p style="text-align: justify">{{ question.explain }}</p>
-                <br>
-            {% endif %}
             <p>{{ order }}. {{ question.text }}</p>
-            {% if answer %}
-                <textarea name="resposta" rows="10" cols="30">{{ answer }}</textarea>
-            {% else %}
-                <textarea name="resposta" rows="10" cols="30"></textarea>
-            {% endif %}
+            {% for option in options %}
+                {% if option.id == answer %}
+                    <label><input type="radio" name="resposta" value="{{ option.id }}" disabled checked>: {{ option.option }}
+                    </label>
+                    <br>
+                {% else %}
+                    <label><input type="radio" name="resposta" value="{{ option.id }}" disabled>: {{ option.option }}</label>
+                    <br>
+                {% endif %}
+            {% endfor %}
             <br>
             <input class="testButton" type="submit" value="Próxima Pergunta">
+            <br>
         </form>
-        <br>
-        <a href="{% url 'prevPergunta' resolutionID question.id %}">
+        <a href="{% url 'reportPrevQuestion' resolutionID question.id %}">
             <button class="testButton3">Pergunta Anterior</button>
         </a>
     </div>

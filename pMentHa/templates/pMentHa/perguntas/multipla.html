@@ -8,12 +8,12 @@
             <div class="dropdown">
                 <button class="dropbtn"><i class="fas fa-head-side-virus"></i> Projeto MentHa</button>
                 <div class="dropdown-content">
-                    <a class="active" href="{% url 'patientoverview' %}">ProtocoloMentHa</a>
-                    <a href="{% url 'mentha-care' %}"> MentHaCare</a>
-                    <a href="">MentHaCOG</a>
+                    <a href="{% url 'protocolo' %}">Protocolo-MentHa</a>
+                    <a href="{% url 'mentha-care' %}"> MentHa-Care</a>
+                    <a href="{% url 'cog' %}">MentHa-COG</a>
                 </div>
             </div>
-            <a href=""><i class="fa fa-fw fa-envelope"></i> Contactos</a>
+            <a href="{% url 'contact' %}"><i class="fa fa-fw fa-envelope"></i> Contactos</a>
             <div class="top-right">
                 <div class="dropdown">
                     <button class="dropbtn">Bem vindo {{ user.username }}!</button>
@@ -25,19 +25,36 @@
         </div>
         <img class="img" src="{% static "pMentHa/images/mentha.png" %}" alt="velhotes"/>
     </header>
-    <div class="test">
+    <h1 style="text-align: center;margin-top: 5%; color: darkslategrey;text-transform: uppercase">{{ test }}</h1>
+    <div class="multiple">
         <h2 class="categoria">{{ question.category }}</h2>
         <form action="{% url 'fazPergunta' resolutionID question.id %}" method="POST">
             {% csrf_token %}
+            {% if image %}
+                <a href="http://www.google.pt" target="_blank">
+                <img width="220" height="250" src="{% static image %}" alt="Snow"></a>
+            {% endif %}
+            {% if question.explain %}
+                <h4> Explicação:</h4>
+                <p style="text-align: justify">{{ question.explain }}</p>
+                <br>
+            {% endif %}
             <p>{{ order }}. {{ question.text }}</p>
             {% for option in options %}
-                <label><input type="radio" name="resposta" value="{{ option }}">: {{ option.option }}</label>
+                {% if option.id == answer %}
+                    <label><input type="radio" name="resposta" value="{{ option.id }}" checked>: {{ option.option }}
+                    </label>
+                    <br>
+                {% else %}
+                    <label><input type="radio" name="resposta" value="{{ option.id }}">: {{ option.option }} </label>
+                    <br>
+                {% endif %}
             {% endfor %}
             <br>
             <input class="testButton" type="submit" value="Próxima Pergunta">
-            <p>{{ question.explain }}</p>
-            <p>question.comments!!!!</p>
         </form>
-    anterior
+        <a href="{% url 'prevPergunta' resolutionID question.id %}">
+            <button class="testButton3">Pergunta Anterior</button>
+        </a>
     </div>
 {% endblock %}

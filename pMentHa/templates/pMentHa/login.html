@@ -7,16 +7,12 @@
             <div class="dropdown">
                 <button class="dropbtn"><i class="fas fa-head-side-virus"></i> Projeto MentHa</button>
                 <div class="dropdown-content">
-                     {% if user.is_authenticated %}
-                        <a href="{% url 'patientoverview' %}">ProtocoloMentHa</a>
-                    {% else %}
-                        <a href="{% url 'login_' %}">ProtocoloMentHa</a>
-                    {% endif %}
-                    <a href="{% url 'mentha-care' %}"> MentHaCare</a>
-                    <a href="">MentHaCOG</a>
+                    <a href="{% url 'protocolo' %}"> Protocolo-MentHa</a>
+                    <a href="{% url 'mentha-care' %}"> MentHa-Care</a>
+                    <a href="{% url 'cog' %}">MentHa-COG</a>
                 </div>
             </div>
-            <a href=""><i class="fa fa-fw fa-envelope"></i> Contactos</a>
+            <a href="{% url 'contact' %}"><i class="fa fa-fw fa-envelope"></i> Contactos</a>
             <div class="top-right">
                 <a class="active" href="{% url 'login_' %}"><i class="fas fa-fingerprint"></i> Login</a>
             </div>

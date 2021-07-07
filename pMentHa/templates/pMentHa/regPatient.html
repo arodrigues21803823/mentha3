@@ -7,12 +7,12 @@
             <div class="dropdown">
                 <button class="dropbtn"><i class="fas fa-head-side-virus"></i> Projeto MentHa</button>
                 <div class="dropdown-content">
-                    <a class="active" href="{% url 'patientoverview' %}">ProtocoloMentHa</a>
-                    <a href="{% url 'mentha-care' %}"> MentHaCare</a>
-                    <a href="">MentHaCOG</a>
+                    <a class="active" href="{% url 'protocolo' %}">Protocolo-MentHa</a>
+                    <a href="{% url 'mentha-care' %}"> MentHa-Care</a>
+                    <a href="{% url 'cog' %}">MentHa-COG</a>
                 </div>
             </div>
-            <a href=""><i class="fa fa-fw fa-envelope"></i> Contactos</a>
+            <a href="{% url 'contact' %}"><i class="fa fa-fw fa-envelope"></i> Contactos</a>
             <div class="top-right">
                 {% if user.is_authenticated %}
                     <div class="dropdown">
@@ -48,16 +48,18 @@
                     <input class="pat" type="text" id="email" name="email">
 
                     <label class="left" for="gender">Género</label>
-                    <select id="gender" name="gender">
+                    <select class="pat" id="gender" name="gender">
                         <option value="masculino">Masculino</option>
                         <option value="feminino">Feminino</option>
                         <option value="outro">Outro</option>
                     </select>
 
                     <label class="left" for="nacionality">Nacionalidade</label>
-                    <select id="nacionality" name="nacionality">
+                    <select class="pat" id="nacionality" name="nacionality">
                         <option value="portugal">Portugal</option>
                         <option value="espanha">Espanha</option>
+                        <option value="espanha">França</option>
+                        <option value="espanha">Alemanha</option>
                         <option value="outro">Outro</option>
                     </select>
                 </div>

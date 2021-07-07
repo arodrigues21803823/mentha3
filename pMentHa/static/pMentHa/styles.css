@@ -186,6 +186,8 @@ h1 {
 
 }
 
+
+
 .promotores {
     display: flex;
     width: 808px;
@@ -200,6 +202,12 @@ h1 {
     margin-left: auto;
     margin-top: -350px;
     margin-right: 85px;
+}
+
+.protocolo_options {
+    position: absolute;
+    margin-left: 24%;
+
 }
 
 /*Patient Overview*/
@@ -257,23 +265,15 @@ table {
 }
 
 td, th {
-    border: 1px solid #ddd;
+    border: 2px solid grey;
     padding: 8px;
     text-align: center;
-}
-
-tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-tr:hover {
-    background-color: #ddd;
 }
 
 th {
     padding-top: 12px;
     padding-bottom: 12px;
-    background-color: #4CAF50;
+    background-color: #B8B8B8;
     color: white;
 }
 
@@ -558,12 +558,262 @@ input[type=date]:focus {
     outline: none;
 }
 
+input.login_text[type=number], select {
+    background-color: #f6f6f6;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 5px;
+    width: 85%;
+    border: 2px solid #f6f6f6;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px;
+}
+
+input.login_text[type=date], select {
+    background-color: #f6f6f6;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 5px;
+    width: 85%;
+    border: 2px solid #f6f6f6;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px;
+}
+
+.contact {
+    float: left;
+    margin-left: 30px;
+}
+
 /*Registo*/
 
 /*Teste*/
 .categoria{
-    color: blue;
+    color: grey;
+    padding-bottom: 5%;
 }
-.test{
-    float: left;
+
+.multiple {
+    margin: auto;
+    width: 50%;
+    border: 3px solid #4EB4BE;
+    padding: 20px;
+}
+
+.testButton {
+    background-color: #4EB4BE;
+    border: none;
+    color: white;
+    padding: 15px 60px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 13px;
+    -webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+    box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+    margin-left: 65%;
+}
+
+.testButton:hover {
+    background-color: #7CDDEA;
+}
+
+.testButton1 {
+    background-color: #4EB4BE;
+    border: none;
+    color: white;
+    padding: 15px 60px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 13px;
+    -webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+    box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.testButton1:hover {
+    background-color: #7CDDEA;
+}
+
+.testButton2 {
+    position: absolute;
+    background-color: #4EB4BE;
+    border: none;
+    color: white;
+    padding: 15px 60px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 13px;
+    -webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+    box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+    margin-top: -62px;
+
+}
+
+.testButton2:hover {
+    background-color: #7CDDEA;
+}
+
+.testButton3 {
+    position: absolute;
+    background-color: #4EB4BE;
+    border: none;
+    color: white;
+    padding: 15px 60px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 13px;
+    -webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+    box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+    margin-top: -46px;
+
+}
+
+/* Style the Image Used to Trigger the Modal */
+#myImg {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (Image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+/* Caption of Modal Image (Image Text) - Same Width as the Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Add Animation - Zoom in the Modal */
+.modal-content, #caption {
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+  from {transform:scale(0)}
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+}
+
+.summary-title{
+    font-size: xx-large;
+    font-weight: bolder;
+    text-transform: capitalize;
+    margin-left: 20px;
+
+}
+
+.vl2 {
+    display: block;
+    margin-left: 190px;
+    margin-top: -120px;
+    border-left: 1.5px solid #4EB4BE;
+    height: 100px;
+
+}
+
+.summary-date {
+    font-size: large;
+    text-transform: lowercase;
+    margin-left: 25px;
+    margin-top: -25px;
+}
+
+.summary-number {
+    font-size: large;
+    text-transform: lowercase;
+    margin-left: 25px;
+    margin-top: -15px;
+}
+
+.summary-title2{
+    display: block;
+    font-size: large;
+    font-weight: bolder;
+    text-transform: capitalize;
+    margin-left: 18%;
+    margin-top: -85px;
+}
+
+.summary-number2 {
+    text-transform: capitalize;
+    margin-left: 235px;
+    margin-top: -15px;
+
 }
