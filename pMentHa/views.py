@@ -30,6 +30,12 @@ def cog(request):
     })
 
 
+def image(request, images):
+    return render(request, "pMentHa/image.html", {
+        "image": images
+    })
+
+
 def login_(request):
     if request.method == "POST":
 

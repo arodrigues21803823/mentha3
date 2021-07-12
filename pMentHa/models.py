@@ -4,12 +4,14 @@ from django import forms
 
 # Create your models here.
 class Question(models.Model):
-    multipla = models.BooleanField(default=False)
-    category = models.TextField(max_length=1000)
-    text = models.TextField(max_length=1000)
-    explain = models.TextField(max_length=1000, blank=True)
-    cover = models.TextField(max_length=100, blank=True)
-    stimulus = models.IntegerField(null=True)
+    multipla = models.BooleanField(default=False)  # Se a pergunta múltipla carregar na checkbox no admin
+    category = models.TextField(max_length=1000)  # Categoria ex: Saúde Global, Cognitivo etc etc
+    text = models.TextField(max_length=1000)  # Texto da pergunta
+    explain = models.TextField(max_length=1000, blank=True)  # Explicação para o revisor ler ao paciente
+    cover = models.TextField(max_length=100,
+                             blank=True)  # Perguntas com imagem para mostrar. Indica a rota da imagem ex:(
+    # pMentHa/images/folha_estimulos_1.png)
+    stimulus = models.IntegerField(null=True)  # Não implementado mas necessário para criar uma pergunta. Avaliar
 
     def __str__(self):
         return f"{self.text[:30]}"
@@ -18,13 +20,15 @@ class Question(models.Model):
 class Option(models.Model):
     question = models.ForeignKey('Question', on_delete=models.SET_NULL, null=True)
     option = models.TextField(max_length=1000)
-    order = models.IntegerField()
+    order = models.IntegerField()  # Ordem da opção, não implementado, estudar com professor Pedro Santos se a ordem
+    # das opções é importante
 
     def __str__(self):
         return f"{self.id} Question:{self.question.text}, option:{self.option}, order:{self.order}"
 
 
-class QuestionOrder(models.Model):
+class QuestionOrder(
+    models.Model):  # Ordem das perguntas num determinado teste. Cada pergunta apenas tem uma ordem num determinado teste.
     question = models.ForeignKey('Question', on_delete=models.SET_NULL, null=True)
     order = models.IntegerField()
     test = models.ForeignKey('Test', on_delete=models.SET_NULL, null=True)
@@ -35,7 +39,7 @@ class QuestionOrder(models.Model):
 
 class Test(models.Model):
     name = models.CharField(max_length=64)
-    statement = models.TextField(max_length=1000)
+    statement = models.TextField(max_length=1000)  # Frase introdutória a cada teste
     questions = models.ManyToManyField('Question', blank=True, related_name="questions")
     advisor = models.ForeignKey('Advisor', on_delete=models.SET_NULL, null=True, related_name="advisor")
 

@@ -20,6 +20,7 @@ urlpatterns = [
     path("Report<int:resolutionID>---Questao<int:questionID>", views.reportPrevQuestion, name="reportPrevQuestion"),
     path("contacts", views.contact, name="contact"),
     path("patient-summary<int:patientID>", views.patient_summary, name="patientSummary"),
+    path("image<str:image>", views.image, name="image"),
     #Django Auth
 
     path("login_", views.login_, name="login_"),

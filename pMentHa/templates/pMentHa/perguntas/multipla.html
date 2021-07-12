@@ -31,7 +31,7 @@
         <form action="{% url 'fazPergunta' resolutionID question.id %}" method="POST">
             {% csrf_token %}
             {% if image %}
-                <a href="http://www.google.pt" target="_blank">
+                <a href="{% url 'image' %}" target="_blank">
                 <img width="220" height="250" src="{% static image %}" alt="Snow"></a>
             {% endif %}
             {% if question.explain %}
