@@ -90,6 +90,7 @@ def register(request):
         # Attempt to create new user
         try:
             user = User.objects.create_user(username, email, password,)
+            user.is_staff = True
             my_group = Group.objects.get(name='Staff')
             my_group.user_set.add(user)
             user.save()
