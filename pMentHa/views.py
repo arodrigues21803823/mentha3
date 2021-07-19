@@ -88,7 +88,7 @@ def register(request):
         # Attempt to create new user
         try:
             user = User.objects.create_user(username, email, password,)
-            user.is_superuser=True
+            user.groups.add(name='Staff')
             user.save()
         except IntegrityError:
             return render(request, "pMentHa/register.html", {
