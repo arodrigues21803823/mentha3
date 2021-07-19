@@ -7,6 +7,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout, get_user
 from django.db import IntegrityError
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import Group
+
 
 
 # Create your views here.
@@ -88,7 +90,8 @@ def register(request):
         # Attempt to create new user
         try:
             user = User.objects.create_user(username, email, password,)
-            user.groups.add(name='Staff')
+            my_group = Group.objects.get(name='Staff')
+            my_group.user_set.add(user)
             user.save()
         except IntegrityError:
             return render(request, "pMentHa/register.html", {
